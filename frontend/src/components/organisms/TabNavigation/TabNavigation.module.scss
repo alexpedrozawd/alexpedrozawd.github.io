@@ -12,10 +12,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: $space-xs;
-  padding: $space-sm $space-xs;
+  gap: $space-sm;
+  padding: $space-md $space-sm;
   font-family: $font-display;
-  font-size: 0.65rem;
+  font-size: 0.9rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: $color-muted;
@@ -51,11 +51,11 @@
 }
 
 .tabIcon {
-  font-size: 0.9rem;
+  font-size: 1.3rem;
 }
 
 .tabLabel {
-  @media (max-width: 400px) {
+  @media (max-width: 480px) {
     display: none;
   }
 }
