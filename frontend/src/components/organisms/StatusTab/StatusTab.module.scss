@@ -57,7 +57,7 @@
 
 .class {
   font-family: $font-body;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-style: italic;
   color: $color-muted;
   margin-bottom: $space-xs;
@@ -93,7 +93,7 @@
 
 .sectionTitle {
   font-family: $font-display;
-  font-size: 0.8rem;
+  font-size: 1.05rem;
   color: $color-muted;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -114,18 +114,18 @@
 
 .attrLabel {
   font-family: $font-display;
-  font-size: 0.65rem;
+  font-size: 1rem;
   letter-spacing: 0.08em;
   color: $color-gold-dim;
-  width: 26px;
+  width: 40px;
   flex-shrink: 0;
 }
 
 .attrValue {
   font-family: $font-display;
-  font-size: 0.6rem;
+  font-size: 0.95rem;
   color: $color-muted;
-  min-width: 40px;
+  min-width: 56px;
   text-align: right;
 }
 
@@ -137,7 +137,7 @@
 
 .lore {
   font-family: $font-body;
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-style: italic;
   color: $color-muted;
   line-height: 1.7;
