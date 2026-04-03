@@ -15,7 +15,7 @@
 
 .sectionTitle {
   font-family: $font-display;
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: $color-gold;
@@ -69,7 +69,7 @@
 
 .label {
   font-family: $font-display;
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: $color-muted;
@@ -81,8 +81,8 @@
   border-radius: $radius-sm;
   color: $color-parchment;
   font-family: $font-body;
-  font-size: 0.82rem;
-  padding: $space-xs $space-sm;
+  font-size: 1rem;
+  padding: $space-sm $space-md;
   transition: border-color $transition-fast, box-shadow $transition-fast;
   outline: none;
   width: 100%;
@@ -105,7 +105,7 @@
 
 .textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 120px;
 }
 
 // Submit

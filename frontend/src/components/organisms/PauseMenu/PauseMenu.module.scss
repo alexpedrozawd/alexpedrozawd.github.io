@@ -6,7 +6,7 @@
   position: fixed;
   inset: 0;
   @include flex-center;
-  padding: $space-md;
+  padding: 2vh 2vw;
   background:
     radial-gradient(ellipse at 30% 40%, rgba(60, 20, 10, 0.3) 0%, transparent 55%),
     radial-gradient(ellipse at 70% 70%, rgba(20, 10, 60, 0.25) 0%, transparent 50%),
@@ -41,8 +41,8 @@
 .window {
   position: relative;
   width: 100%;
-  max-width: 700px;
-  height: min(92vh, 640px);
+  max-width: min(1200px, 96vw);
+  height: 96vh;
   background: $color-panel;
   border: 1px solid $color-gold-dark;
   border-radius: $radius-lg;
@@ -97,13 +97,13 @@
 }
 
 .headerOrn {
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   color: $color-gold-dark;
 }
 
 .title {
   font-family: $font-display;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -134,7 +134,7 @@
 
   span {
     font-family: $font-display;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     letter-spacing: 0.1em;
     color: $color-muted;
     text-transform: uppercase;

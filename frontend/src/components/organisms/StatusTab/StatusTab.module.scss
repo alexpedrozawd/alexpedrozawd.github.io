@@ -22,8 +22,8 @@
 }
 
 .avatar {
-  width: 90px;
-  height: 90px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   border: 2px solid $color-gold-dim;
   display: block;
@@ -48,7 +48,7 @@
 
 .name {
   font-family: $font-display;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: $color-gold-light;
   letter-spacing: 0.06em;
@@ -57,7 +57,7 @@
 
 .class {
   font-family: $font-body;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-style: italic;
   color: $color-muted;
   margin-bottom: $space-xs;
@@ -82,7 +82,7 @@
 
 .levelValue {
   font-family: $font-display;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   font-weight: 900;
   color: $color-gold;
 }
@@ -93,7 +93,7 @@
 
 .sectionTitle {
   font-family: $font-display;
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   color: $color-muted;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -137,7 +137,7 @@
 
 .lore {
   font-family: $font-body;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-style: italic;
   color: $color-muted;
   line-height: 1.7;

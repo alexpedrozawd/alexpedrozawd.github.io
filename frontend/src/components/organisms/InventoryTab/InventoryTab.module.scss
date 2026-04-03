@@ -12,13 +12,13 @@
 
 .grid {
   flex: 0 0 auto;
-  width: 200px;
+  width: 280px;
   display: flex;
   flex-direction: column;
   gap: $space-sm;
 
   @include below("md") {
-    width: 140px;
+    width: 180px;
   }
 }
 
@@ -90,13 +90,13 @@
 }
 
 .detailIcon {
-  font-size: 3rem;
+  font-size: 5rem;
   filter: drop-shadow(0 0 12px $color-gold-glow);
 }
 
 .detailTitle {
   font-family: $font-display;
-  font-size: 1rem;
+  font-size: 1.4rem;
   color: $color-gold;
   letter-spacing: 0.06em;
 }
@@ -153,11 +153,11 @@
 }
 
 .detailDesc {
-  font-size: 0.75rem;
+  font-size: 1rem;
   color: $color-muted;
   font-style: italic;
   line-height: 1.6;
-  max-width: 220px;
+  max-width: 340px;
 }
 
 // Infinite loading animation

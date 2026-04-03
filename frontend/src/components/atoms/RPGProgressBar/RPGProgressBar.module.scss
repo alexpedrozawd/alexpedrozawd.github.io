@@ -10,18 +10,18 @@
 
 .label {
   font-family: $font-display;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: $color-muted;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  min-width: 90px;
+  min-width: 110px;
   flex-shrink: 0;
 }
 
 .track {
   position: relative;
   flex: 1;
-  height: 14px;
+  height: 18px;
   background: rgba(0, 0, 0, 0.6);
   border: 1px solid $color-gold-dark;
   border-radius: $radius-sm;
@@ -63,9 +63,9 @@
 
 .percent {
   font-family: $font-display;
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   color: $color-gold-dim;
-  min-width: 36px;
+  min-width: 44px;
   text-align: right;
 }
 
