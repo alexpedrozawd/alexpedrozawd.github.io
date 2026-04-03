@@ -94,7 +94,7 @@ export function QuestLogTab() {
             className={`${styles.filterBtn} ${filter === f ? styles.activeFilter : ""}`}
             onClick={() => setFilter(f)}
           >
-            {f === "all" ? "Todas" : f === "main" ? "⚔ Principais" : "📖 Secundárias"}
+            {f === "all" ? "📋 Todas" : f === "main" ? "⚔ Principais" : "📖 Secundárias"}
           </button>
         ))}
       </div>
