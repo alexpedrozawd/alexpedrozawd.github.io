@@ -42,7 +42,8 @@
   position: relative;
   width: 100%;
   max-width: min(1200px, 96vw);
-  height: 96vh;
+  height: auto;
+  max-height: 96vh;
   background: $color-panel;
   border: 1px solid $color-gold-dark;
   border-radius: $radius-lg;
@@ -114,11 +115,11 @@
 
 // ─── Content area ────────────────────────────────────────────
 .content {
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   z-index: 2;
+  @include dark-scrollbar;
 }
 
 // ─── Footer ──────────────────────────────────────────────────
@@ -144,13 +145,14 @@
 // ─── Responsive ──────────────────────────────────────────────
 @include below("sm") {
   .window {
-    height: 100vh;
-    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
     border-radius: 0;
     max-width: 100%;
   }
 
   .overlay {
     padding: 0;
+    align-items: flex-start;
   }
 }

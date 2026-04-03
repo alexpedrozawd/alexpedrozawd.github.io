@@ -4,9 +4,6 @@
 .container {
   padding: $space-lg;
   animation: fadeInUp 0.3s ease both;
-  @include dark-scrollbar;
-  overflow-y: auto;
-  height: 100%;
 }
 
 .hero {
