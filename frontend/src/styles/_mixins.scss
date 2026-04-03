@@ -11,8 +11,12 @@
 
 /// Glowing gold box-shadow
 @mixin gold-glow($intensity: 1) {
-  box-shadow: 0 0 #{8px * $intensity} rgba(201, 170, 113, #{0.4 * $intensity}),
-              0 0 #{20px * $intensity} rgba(201, 170, 113, #{0.15 * $intensity});
+  $size1:   8px  * $intensity;
+  $size2:   20px * $intensity;
+  $alpha1:  0.4  * $intensity;
+  $alpha2:  0.15 * $intensity;
+  box-shadow: 0 0 $size1 rgba(201, 170, 113, $alpha1),
+              0 0 $size2 rgba(201, 170, 113, $alpha2);
 }
 
 /// Parchment text gradient
