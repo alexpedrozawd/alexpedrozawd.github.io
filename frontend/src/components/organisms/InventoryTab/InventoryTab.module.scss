@@ -22,7 +22,7 @@
 
 .gridTitle {
   font-family: $font-display;
-  font-size: 0.6rem;
+  font-size: 0.9rem;
   color: $color-muted;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -36,11 +36,11 @@
 }
 
 .hint {
-  font-size: 0.6rem;
+  font-size: 0.85rem;
   color: $color-disabled;
   font-style: italic;
   text-align: center;
-  margin-top: auto;
+  margin-top: $space-sm;
 }
 
 // Detail panel

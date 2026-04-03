@@ -29,6 +29,22 @@ const PROJECTS: Project[] = [
     tags: [],
     icon: "🔮",
   },
+  {
+    id: 4,
+    title: "Projeto Delta",
+    description: "Em breve...",
+    status: "coming_soon",
+    tags: [],
+    icon: "🏹",
+  },
+  {
+    id: 5,
+    title: "Projeto Epsilon",
+    description: "Em breve...",
+    status: "coming_soon",
+    tags: [],
+    icon: "⚔️",
+  },
 ];
 
 export function InventoryTab() {
