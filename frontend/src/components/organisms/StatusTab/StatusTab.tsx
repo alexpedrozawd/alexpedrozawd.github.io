@@ -25,49 +25,53 @@ const ATTRIBUTES = [
 export function StatusTab() {
   return (
     <div className={styles.container}>
-      {/* — Hero Section — */}
-      <div className={styles.hero}>
-        <div className={styles.avatarWrapper}>
-          <img
-            src={AVATAR_URL}
-            alt="Alexandre Pedroza"
-            className={styles.avatar}
-            onError={(e) => {
-              (e.target as HTMLImageElement).src =
-                "https://placehold.co/100x100/0d0d1a/c9aa71?text=AP";
-            }}
-          />
-          <div className={styles.avatarGlow} aria-hidden="true" />
-        </div>
-        <div className={styles.identity}>
-          <h2 className={styles.name}>Alexandre Pedroza</h2>
-          <p className={styles.class}>Desenvolvedor Fullstack</p>
-          <div className={styles.levelBadge}>
-            <span className={styles.levelLabel}>LVL</span>
-            <span className={styles.levelValue}>99</span>
+      {/* — Hero Row: avatar/identity (left) + attributes (right) — */}
+      <div className={styles.heroRow}>
+        <div className={styles.heroLeft}>
+          <div className={styles.hero}>
+            <div className={styles.avatarWrapper}>
+              <img
+                src={AVATAR_URL}
+                alt="Alexandre Pedroza"
+                className={styles.avatar}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src =
+                    "https://placehold.co/100x100/0d0d1a/c9aa71?text=AP";
+                }}
+              />
+              <div className={styles.avatarGlow} aria-hidden="true" />
+            </div>
+            <div className={styles.identity}>
+              <h2 className={styles.name}>Alexandre Pedroza</h2>
+              <p className={styles.class}>Desenvolvedor Fullstack</p>
+              <div className={styles.levelBadge}>
+                <span className={styles.levelLabel}>LVL</span>
+                <span className={styles.levelValue}>99</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <OrnamentDivider />
-
-      {/* — Attributes — */}
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Atributos</h3>
-        <div className={styles.attributes}>
-          {ATTRIBUTES.map((attr) => (
-            <div key={attr.label} className={styles.attr}>
-              <span className={styles.attrLabel}>{attr.label}</span>
-              <RPGProgressBar
-                value={(attr.value / attr.max) * 100}
-                color={attr.color}
-                thin
-              />
-              <span className={styles.attrValue}>
-                {attr.value}/{attr.max}
-              </span>
+        <div className={styles.heroRight}>
+          {/* — Attributes — */}
+          <div className={styles.section}>
+            <h3 className={styles.sectionTitle}>Atributos</h3>
+            <div className={styles.attributes}>
+              {ATTRIBUTES.map((attr) => (
+                <div key={attr.label} className={styles.attr}>
+                  <span className={styles.attrLabel}>{attr.label}</span>
+                  <RPGProgressBar
+                    value={(attr.value / attr.max) * 100}
+                    color={attr.color}
+                    thin
+                  />
+                  <span className={styles.attrValue}>
+                    {attr.value}/{attr.max}
+                  </span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
 

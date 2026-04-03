@@ -6,11 +6,26 @@
   animation: fadeInUp 0.3s ease both;
 }
 
+.heroRow {
+  display: flex;
+  gap: $space-xl;
+  align-items: flex-start;
+  margin-bottom: $space-md;
+}
+
+.heroLeft {
+  flex-shrink: 0;
+}
+
+.heroRight {
+  flex: 1;
+  min-width: 0;
+}
+
 .hero {
   display: flex;
   align-items: center;
   gap: $space-lg;
-  margin-bottom: $space-md;
 }
 
 .avatarWrapper {
@@ -72,7 +87,7 @@
 
 .levelLabel {
   font-family: $font-display;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   font-weight: 400;
   color: $color-muted;
   letter-spacing: 0.1em;
