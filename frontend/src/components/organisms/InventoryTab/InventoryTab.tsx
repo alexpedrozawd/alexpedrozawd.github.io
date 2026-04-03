@@ -43,7 +43,7 @@ const PROJECTS: Project[] = [
     description: "Em breve...",
     status: "coming_soon",
     tags: [],
-    icon: "⚔️",
+    icon: "🪓",
   },
 ];
 
