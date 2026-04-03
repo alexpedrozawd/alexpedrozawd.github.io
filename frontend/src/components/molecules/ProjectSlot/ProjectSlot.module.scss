@@ -8,18 +8,18 @@
   justify-content: center;
   gap: $space-xs;
   width: 100%;
-  aspect-ratio: 1;
+  min-height: 90px;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid $color-gold-dark;
   border-radius: $radius-md;
   cursor: pointer;
-  padding: $space-md;
+  padding: $space-md $space-sm;
   text-align: center;
   color: $color-parchment;
   font-family: $font-body;
   transition: all $transition-normal;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 
   &::before {
     content: "";
@@ -47,9 +47,10 @@
 }
 
 .icon {
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
   display: block;
   filter: drop-shadow(0 0 6px $color-gold-glow);
+  line-height: 1.2;
 }
 
 .title {

@@ -61,11 +61,11 @@ const SIDE_QUESTS: Quest[] = [
   {
     id: "sq-2",
     type: "side",
-    title: "Estágio em Desenvolvimento",
+    title: "Estágio em Manutenção e Redes",
     organisation: "SENAI-PB",
     period: "2022 – 2023",
     description:
-      "Estágio supervisionado com foco em desenvolvimento de sistemas internos e automação de processos.",
+      "Estágio supervisionado com foco em manutenção de computadores, infraestrutura de redes e suporte técnico.",
     completed: true,
   },
   {
