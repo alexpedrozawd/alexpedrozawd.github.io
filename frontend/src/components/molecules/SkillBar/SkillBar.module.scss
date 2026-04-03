@@ -1,0 +1,7 @@
+@use "../../../styles/variables" as *;
+
+.container {
+  + .container {
+    margin-top: $space-sm;
+  }
+}

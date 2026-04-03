@@ -1,0 +1,181 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.container {
+  padding: $space-lg;
+  overflow-y: auto;
+  height: 100%;
+  animation: fadeInUp 0.3s ease both;
+  @include dark-scrollbar;
+}
+
+.section {
+  margin-bottom: $space-md;
+}
+
+.sectionTitle {
+  font-family: $font-display;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $color-gold;
+  margin-bottom: $space-sm;
+}
+
+.sectionDesc {
+  font-size: 0.8rem;
+  color: $color-muted;
+  margin-bottom: $space-sm;
+  font-style: italic;
+}
+
+// CV Button
+.cvButton {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-sm $space-lg;
+  background: linear-gradient(135deg, rgba(92, 74, 30, 0.4), rgba(201, 170, 113, 0.1));
+  border: 1px solid $color-gold-dim;
+  border-radius: $radius-md;
+  color: $color-gold;
+  font-family: $font-display;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all $transition-normal;
+  @include hover-lift;
+
+  &:hover {
+    color: $color-gold-light;
+    background: linear-gradient(135deg, rgba(92, 74, 30, 0.6), rgba(201, 170, 113, 0.18));
+    text-decoration: none;
+  }
+}
+
+// Form
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-family: $font-display;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-muted;
+}
+
+.input {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid $color-gold-dark;
+  border-radius: $radius-sm;
+  color: $color-parchment;
+  font-family: $font-body;
+  font-size: 0.82rem;
+  padding: $space-xs $space-sm;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+  outline: none;
+  width: 100%;
+
+  &::placeholder {
+    color: $color-disabled;
+  }
+
+  &:focus {
+    border-color: $color-gold-dim;
+    box-shadow: 0 0 0 2px rgba(201, 170, 113, 0.15);
+  }
+
+  // select option colours
+  option {
+    background: $color-dungeon;
+    color: $color-parchment;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+// Submit
+.submitButton {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-xs $space-lg;
+  background: linear-gradient(135deg, rgba(92, 74, 30, 0.5), rgba(201, 170, 113, 0.15));
+  border: 1px solid $color-gold-dim;
+  border-radius: $radius-md;
+  color: $color-gold;
+  font-family: $font-display;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all $transition-normal;
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(92, 74, 30, 0.7), rgba(201, 170, 113, 0.25));
+    border-color: $color-gold;
+    @include gold-glow;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid $color-gold-dark;
+  border-top-color: $color-gold;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+// Feedback
+.errorMsg {
+  font-size: 0.75rem;
+  color: #e74c3c;
+  background: rgba(192, 57, 43, 0.1);
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  border-radius: $radius-sm;
+  padding: $space-xs $space-sm;
+  margin: 0;
+}
+
+.successBox {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: $radius-sm;
+  padding: $space-sm $space-md;
+  color: #6ee7b7;
+  font-size: 0.8rem;
+}
+
+.successIcon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

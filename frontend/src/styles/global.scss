@@ -1,0 +1,92 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// Bootstrap (using @import for compatibility with Bootstrap's internal structure)
+@import "bootstrap/scss/bootstrap";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: $font-body;
+  font-size: 16px;
+  background-color: $color-void;
+  color: $color-parchment;
+  line-height: 1.6;
+  overflow: hidden;
+
+  // Atmospheric background — layered radial gradients suggesting fog/mist
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(60, 30, 10, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(30, 10, 60, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(10, 30, 60, 0.2) 0%, transparent 55%),
+    linear-gradient(180deg, #07070f 0%, #0d0a18 50%, #070710 100%);
+}
+
+// Cinzel headings
+h1, h2, h3, h4 {
+  font-family: $font-display;
+  color: $color-gold;
+  letter-spacing: 0.05em;
+}
+
+// Links
+a {
+  color: $color-gold;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-gold-light;
+    text-decoration: underline;
+  }
+}
+
+// Selection highlight
+::selection {
+  background: rgba(201, 170, 113, 0.3);
+  color: $color-gold-light;
+}
+
+// Custom scrollbar
+@include dark-scrollbar;
+
+// Bootstrap overrides
+.btn {
+  font-family: $font-display;
+  letter-spacing: 0.08em;
+}
+
+// Animated shimmer keyframe (shared)
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 6px $color-gold-glow; }
+  50%       { box-shadow: 0 0 18px rgba(201, 170, 113, 0.55); }
+}
+
+@keyframes loading-bar {
+  0%   { width: 0%; }
+  80%  { width: 95%; }
+  100% { width: 100%; }
+}

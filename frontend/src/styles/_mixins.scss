@@ -1,0 +1,94 @@
+// ============================================================
+// RPG Dark Fantasy — Mixins
+// ============================================================
+
+/// Ornate gold border
+@mixin gold-border($width: 1px, $style: solid) {
+  border: $width $style $color-gold-dark;
+}
+
+/// Glowing gold box-shadow
+@mixin gold-glow($intensity: 1) {
+  box-shadow: 0 0 #{8px * $intensity} rgba(201, 170, 113, #{0.4 * $intensity}),
+              0 0 #{20px * $intensity} rgba(201, 170, 113, #{0.15 * $intensity});
+}
+
+/// Parchment text gradient
+@mixin parchment-text {
+  background: linear-gradient(135deg, $color-gold-light 0%, $color-parchment 50%, $color-gold 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/// Section heading with decorative lines
+@mixin ornate-heading {
+  font-family: $font-display;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-gold;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 24px;
+    height: 1px;
+    background: $color-gold-dim;
+    margin: 0 10px;
+  }
+}
+
+/// Scrollbar styling
+@mixin dark-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: $color-gold-dark $color-abyss;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $color-abyss;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-gold-dark;
+    border-radius: $radius-sm;
+
+    &:hover {
+      background: $color-gold-dim;
+    }
+  }
+}
+
+/// Responsive breakpoints
+@mixin below($bp) {
+  @if $bp == "sm" {
+    @media (max-width: 576px) { @content; }
+  } @else if $bp == "md" {
+    @media (max-width: 768px) { @content; }
+  } @else if $bp == "lg" {
+    @media (max-width: 992px) { @content; }
+  }
+}
+
+/// Flex center shorthand
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Hover lift effect
+@mixin hover-lift($y: -2px) {
+  transition: transform $transition-normal, box-shadow $transition-normal;
+
+  &:hover {
+    transform: translateY($y);
+    @include gold-glow;
+  }
+}

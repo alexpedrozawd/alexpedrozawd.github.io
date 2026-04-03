@@ -1,0 +1,81 @@
+@use "../../../styles/variables" as *;
+
+.entry {
+  display: flex;
+  gap: $space-md;
+  padding: $space-md 0;
+  position: relative;
+
+  // Vertical connector line
+  &:not(:last-child) {
+    &::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 28px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, $color-gold-dark, transparent);
+    }
+  }
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid $color-gold-dim;
+  background: $color-abyss;
+  flex-shrink: 0;
+  margin-top: 4px;
+  position: relative;
+  z-index: 1;
+
+  .active & {
+    background: $color-gold-dim;
+    border-color: $color-gold;
+    box-shadow: 0 0 8px $color-gold-glow;
+  }
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: $space-sm;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: 0.8rem;
+  color: $color-gold;
+  letter-spacing: 0.04em;
+}
+
+.org {
+  font-size: 0.7rem;
+  color: $color-muted;
+  font-style: italic;
+}
+
+.period {
+  display: block;
+  font-size: 0.65rem;
+  color: $color-gold-dim;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.description {
+  font-size: 0.78rem;
+  color: $color-parchment-2;
+  line-height: 1.55;
+  margin: 0;
+}

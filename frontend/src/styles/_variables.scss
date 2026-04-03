@@ -1,0 +1,66 @@
+// ============================================================
+// RPG Dark Fantasy — Design Tokens
+// ============================================================
+
+// Palette
+$color-void:        #07070f;
+$color-abyss:       #0d0d1a;
+$color-dungeon:     #13131f;
+$color-panel:       rgba(10, 9, 20, 0.93);
+$color-panel-light: rgba(20, 18, 35, 0.92);
+
+$color-gold:        #c9aa71;
+$color-gold-light:  #e8cc8a;
+$color-gold-dim:    #8a6f3a;
+$color-gold-dark:   #5c4a1e;
+$color-gold-glow:   rgba(201, 170, 113, 0.35);
+
+$color-parchment:   #e8d5a3;
+$color-parchment-2: #d4b896;
+$color-muted:       #8a7a5a;
+$color-disabled:    #4a4060;
+
+$color-red:         #c0392b;
+$color-red-dim:     #7a2020;
+$color-teal:        #4ecdc4;
+$color-purple:      #8b5cf6;
+$color-amber:       #f59e0b;
+$color-cyan:        #06b6d4;
+$color-emerald:     #10b981;
+
+// Skill bar colours
+$skill-colors: (
+  "bootstrap":  #7952b3,
+  "react":      #61dafb,
+  "typescript": #3178c6,
+  "python":     #3572a5,
+  "fastapi":    #009688,
+  "claudecode": #d97706,
+);
+
+// Typography
+$font-display: "Cinzel", "Palatino Linotype", "Book Antiqua", serif;
+$font-body:    "EB Garamond", "Garamond", "Times New Roman", serif;
+
+// Spacing
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+$space-2xl: 48px;
+
+// Radii
+$radius-sm: 3px;
+$radius-md: 6px;
+$radius-lg: 12px;
+
+// Transitions
+$transition-fast:   0.15s ease;
+$transition-normal: 0.25s ease;
+$transition-slow:   0.4s ease;
+
+// Shadows
+$shadow-panel:   0 8px 48px rgba(0, 0, 0, 0.8), 0 2px 12px rgba(0, 0, 0, 0.6);
+$shadow-gold:    0 0 12px rgba(201, 170, 113, 0.4), 0 0 24px rgba(201, 170, 113, 0.15);
+$shadow-inset:   inset 0 2px 4px rgba(0, 0, 0, 0.6);

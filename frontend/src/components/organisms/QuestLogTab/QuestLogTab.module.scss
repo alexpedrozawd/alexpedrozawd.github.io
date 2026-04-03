@@ -1,0 +1,61 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.filters {
+  display: flex;
+  gap: $space-xs;
+  padding: $space-sm $space-lg;
+  border-bottom: 1px solid rgba(92, 74, 30, 0.3);
+  flex-shrink: 0;
+}
+
+.filterBtn {
+  font-family: $font-display;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  background: transparent;
+  border: 1px solid $color-gold-dark;
+  border-radius: 100px;
+  color: $color-muted;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    color: $color-parchment;
+    border-color: $color-gold-dim;
+  }
+
+  &.activeFilter {
+    background: rgba(201, 170, 113, 0.12);
+    border-color: $color-gold;
+    color: $color-gold;
+  }
+}
+
+.log {
+  flex: 1;
+  overflow-y: auto;
+  padding: $space-md $space-lg;
+  @include dark-scrollbar;
+}
+
+.sectionTitle {
+  font-family: $font-display;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $color-gold-dim;
+  margin-bottom: $space-sm;
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+}

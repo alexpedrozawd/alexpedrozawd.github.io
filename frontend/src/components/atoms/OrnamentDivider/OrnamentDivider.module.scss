@@ -1,0 +1,21 @@
+@use "../../../styles/variables" as *;
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  margin: $space-md 0;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, $color-gold-dark, transparent);
+}
+
+.symbol {
+  font-family: $font-display;
+  color: $color-gold-dim;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}

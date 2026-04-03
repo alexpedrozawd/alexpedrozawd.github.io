@@ -1,0 +1,168 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.container {
+  display: flex;
+  gap: $space-md;
+  padding: $space-lg;
+  height: 100%;
+  overflow: hidden;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.grid {
+  flex: 0 0 auto;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+
+  @include below("md") {
+    width: 140px;
+  }
+}
+
+.gridTitle {
+  font-family: $font-display;
+  font-size: 0.6rem;
+  color: $color-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 2px;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-xs;
+}
+
+.hint {
+  font-size: 0.6rem;
+  color: $color-disabled;
+  font-style: italic;
+  text-align: center;
+  margin-top: auto;
+}
+
+// Detail panel
+.detail {
+  flex: 1;
+  border-left: 1px solid $color-gold-dark;
+  padding-left: $space-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity $transition-normal, transform $transition-normal;
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.emptyDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-sm;
+  color: $color-disabled;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.emptyIcon {
+  font-size: 2rem;
+  opacity: 0.3;
+}
+
+// Detail inner
+.detailInner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-sm;
+  text-align: center;
+}
+
+.detailIcon {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 12px $color-gold-glow);
+}
+
+.detailTitle {
+  font-family: $font-display;
+  font-size: 1rem;
+  color: $color-gold;
+  letter-spacing: 0.06em;
+}
+
+.statusBadge {
+  font-family: $font-display;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $color-gold-dim;
+  border: 1px solid $color-gold-dark;
+  border-radius: 100px;
+  padding: 2px 10px;
+}
+
+.loadingSection {
+  width: 100%;
+  margin-top: $space-sm;
+}
+
+.loadingLabel {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  color: $color-muted;
+  letter-spacing: 0.08em;
+  margin-bottom: $space-xs;
+  text-transform: uppercase;
+}
+
+.loadingTrack {
+  width: 100%;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid $color-gold-dark;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  position: relative;
+}
+
+.loadingFill {
+  height: 100%;
+  background: linear-gradient(90deg, $color-gold-dark, $color-gold, $color-gold-light);
+  border-radius: $radius-sm;
+  animation: infinite-load 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.comingSoon {
+  font-family: $font-display;
+  font-size: 0.7rem;
+  color: $color-gold;
+  letter-spacing: 0.14em;
+  margin-top: $space-sm;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.detailDesc {
+  font-size: 0.75rem;
+  color: $color-muted;
+  font-style: italic;
+  line-height: 1.6;
+  max-width: 220px;
+}
+
+// Infinite loading animation
+@keyframes infinite-load {
+  0%   { width: 0%;   margin-left: 0%; }
+  50%  { width: 70%;  margin-left: 10%; }
+  100% { width: 0%;   margin-left: 100%; }
+}

@@ -1,0 +1,156 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+// ─── Full-screen overlay ─────────────────────────────────────
+.overlay {
+  position: fixed;
+  inset: 0;
+  @include flex-center;
+  padding: $space-md;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(60, 20, 10, 0.3) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 70%, rgba(20, 10, 60, 0.25) 0%, transparent 50%),
+    rgba(7, 7, 15, 0.85);
+  backdrop-filter: blur(2px);
+}
+
+// Atmospheric decorative blobs
+.bgBlob1 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(100, 40, 10, 0.08) 0%, transparent 70%);
+  top: -10%;
+  left: -10%;
+  pointer-events: none;
+}
+
+.bgBlob2 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(30, 10, 80, 0.1) 0%, transparent 70%);
+  bottom: -10%;
+  right: -5%;
+  pointer-events: none;
+}
+
+// ─── Menu window ────────────────────────────────────────────
+.window {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: min(92vh, 640px);
+  background: $color-panel;
+  border: 1px solid $color-gold-dark;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-panel, 0 0 60px rgba(201, 170, 113, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  // Outer ornate border ring
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: $radius-lg;
+    background: linear-gradient(
+      135deg,
+      rgba(201, 170, 113, 0.25) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(201, 170, 113, 0.15) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  // Inner top shimmer
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $color-gold-dim, transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// ─── Header ──────────────────────────────────────────────────
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-sm;
+  padding: $space-sm $space-lg;
+  border-bottom: 1px solid rgba(92, 74, 30, 0.4);
+  background: linear-gradient(180deg, rgba(201,170,113,0.04) 0%, transparent 100%);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.headerOrn {
+  font-size: 0.6rem;
+  color: $color-gold-dark;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: $color-gold;
+  margin: 0;
+  @include parchment-text;
+}
+
+// ─── Content area ────────────────────────────────────────────
+.content {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+// ─── Footer ──────────────────────────────────────────────────
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px $space-lg;
+  border-top: 1px solid rgba(92, 74, 30, 0.3);
+  background: rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+  z-index: 2;
+
+  span {
+    font-family: $font-display;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    color: $color-muted;
+    text-transform: uppercase;
+  }
+}
+
+// ─── Responsive ──────────────────────────────────────────────
+@include below("sm") {
+  .window {
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    max-width: 100%;
+  }
+
+  .overlay {
+    padding: 0;
+  }
+}
