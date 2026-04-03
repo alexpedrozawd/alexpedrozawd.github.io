@@ -5,7 +5,9 @@
 .overlay {
   position: fixed;
   inset: 0;
-  @include flex-center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   padding: 2vh 2vw;
   background:
     radial-gradient(ellipse at 30% 40%, rgba(60, 20, 10, 0.3) 0%, transparent 55%),
