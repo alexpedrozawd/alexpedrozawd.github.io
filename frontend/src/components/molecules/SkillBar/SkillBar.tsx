@@ -26,6 +26,7 @@ export function SkillBar({ skill }: SkillBarProps) {
         color={color}
         label={skill.name}
         showPercent
+        thin
       />
     </div>
   );

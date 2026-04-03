@@ -54,7 +54,7 @@
 
 .class {
   font-family: $font-body;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-style: italic;
   color: $color-muted;
   margin-bottom: $space-xs;
@@ -72,7 +72,8 @@
 
 .levelLabel {
   font-family: $font-display;
-  font-size: 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 400;
   color: $color-muted;
   letter-spacing: 0.1em;
 }
