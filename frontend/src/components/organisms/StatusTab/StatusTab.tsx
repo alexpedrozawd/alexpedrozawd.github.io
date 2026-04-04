@@ -4,6 +4,9 @@ import { SkillBar } from "../../molecules/SkillBar/SkillBar";
 import type { Skill } from "../../../types";
 import styles from "./StatusTab.module.scss";
 
+const LINKEDIN_URL = "https://www.linkedin.com/in/alexandre-pedroza-mb/";
+const CV_URL = "#"; // substituir pela URL do PDF quando disponível
+
 const AVATAR_URL =
   "https://media.licdn.com/dms/image/v2/D4E03AQHT58_HCwY50w/profile-displayphoto-scale_400_400/B4EZzn.QPxHYAg-/0/1773418386666?e=1776902400&v=beta&t=jhHxaosj8e616AhfBqzFo0XWBPhSvQbnNBg_AabahFs";
 
@@ -72,6 +75,33 @@ export function StatusTab() {
               ))}
             </div>
           </div>
+        </div>
+      </div>
+
+      <OrnamentDivider />
+
+      {/* — Pergaminho do Herói — */}
+      <div className={styles.pergaminhoSection}>
+        <h3 className={styles.sectionTitle}>📄 Pergaminho do Herói</h3>
+        <div className={styles.cvButtons}>
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.cvButton}
+          >
+            <span aria-hidden="true">⚔</span>
+            Curriculum LinkedIn
+          </a>
+          <a
+            href={CV_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.cvButton}
+          >
+            <span aria-hidden="true">📜</span>
+            Curriculum Vitae
+          </a>
         </div>
       </div>
 

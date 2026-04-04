@@ -7,7 +7,7 @@ const TABS: { id: TabId; label: string; icon: ReactNode }[] = [
   { id: "status",    label: "Status",     icon: "⚔️" },
   { id: "inventory", label: "Inventário", icon: "🎒" },
   { id: "questlog",  label: "Quest Log",  icon: "📜" },
-  { id: "system",    label: "Sistema",    icon: "🗝️" },
+  { id: "system",    label: "Cartas",     icon: "🪶" },
 ];
 
 interface TabNavigationProps {

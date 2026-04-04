@@ -2,8 +2,6 @@ import { OrnamentDivider } from "../../atoms/OrnamentDivider/OrnamentDivider";
 import { useContactForm } from "../../../hooks/useContactForm";
 import styles from "./SystemTab.module.scss";
 
-const LINKEDIN_URL = "https://www.linkedin.com/in/alexandre-pedroza-mb/";
-
 const SUBJECT_OPTIONS = [
   "Proposta de Trabalho",
   "Freelance / Projeto",
@@ -25,28 +23,9 @@ export function SystemTab() {
 
   return (
     <div className={styles.container}>
-      {/* — Download CV — */}
-      <section className={styles.section}>
-        <h3 className={styles.sectionTitle}>📄 Pergaminho do Herói</h3>
-        <p className={styles.sectionDesc}>
-          Acesse o perfil completo no LinkedIn para visualizar o currículo.
-        </p>
-        <a
-          href={LINKEDIN_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.cvButton}
-        >
-          <span aria-hidden="true">⚔</span>
-          Ver Currículo no LinkedIn
-        </a>
-      </section>
-
-      <OrnamentDivider />
-
       {/* — Contact Form — */}
       <section className={styles.section}>
-        <h3 className={styles.sectionTitle}>✉ Enviar Mensagem</h3>
+        <h3 className={styles.sectionTitle}>✉ Enviar Carta</h3>
 
         {status === "success" ? (
           <div className={styles.successBox} role="alert">
