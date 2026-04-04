@@ -75,6 +75,17 @@ export function StatusTab() {
         </div>
       </div>
 
+      <OrnamentDivider />
+
+      {/* — Lore — */}
+      <div className={styles.lore}>
+        <p>
+          Aventureiro digital de João Pessoa – PB. Transicionei de Suporte &amp; Infra para o
+          desenvolvimento fullstack, forjando interfaces medievais e APIs rápidas como
+          raios arcanos. Sempre buscando novos feitiços na stack moderna.
+        </p>
+      </div>
+
       <OrnamentDivider symbol="⚙" />
 
       {/* — Skills — */}
@@ -85,17 +96,6 @@ export function StatusTab() {
             <SkillBar key={skill.name} skill={skill} />
           ))}
         </div>
-      </div>
-
-      <OrnamentDivider />
-
-      {/* — Lore — */}
-      <div className={styles.lore}>
-        <p>
-          Aventureiro digital de João Pessoa – PB. Transicionei de Suporte &amp; Infra para o
-          desenvolvimento fullstack, forjando interfaces medievais e APIs rápidas como
-          raios arcanos. Sempre buscando novos feitiços na stack moderna.
-        </p>
       </div>
     </div>
   );
