@@ -45,35 +45,39 @@ export function InventoryTab() {
 
   return (
     <div className={styles.container}>
-      {/* Grid */}
-      <div className={styles.grid}>
-        <h3 className={styles.gridTitle}>Inventário de Projetos</h3>
-        <div className={styles.slots}>
-          {PROJECTS.map((project) => (
-            <ProjectSlot
-              key={project.id}
-              project={project}
-              isSelected={selectedId === project.id}
-              onClick={() =>
-                setSelectedId((prev) => (prev === project.id ? null : project.id))
-              }
-            />
-          ))}
+      {/* Grid + Detail row */}
+      <div className={styles.row}>
+        <div className={styles.grid}>
+          <h3 className={styles.gridTitle}>Inventário de Projetos</h3>
+          <div className={styles.slots}>
+            {PROJECTS.map((project) => (
+              <ProjectSlot
+                key={project.id}
+                project={project}
+                isSelected={selectedId === project.id}
+                onClick={() =>
+                  setSelectedId((prev) => (prev === project.id ? null : project.id))
+                }
+              />
+            ))}
+          </div>
         </div>
-        <p className={styles.hint}>Selecione um item para ver detalhes</p>
+
+        {/* Detail panel */}
+        <div className={`${styles.detail} ${selectedProject ? styles.visible : ""}`}>
+          {selectedProject ? (
+            <ProjectDetail project={selectedProject} />
+          ) : (
+            <div className={styles.emptyDetail}>
+              <span className={styles.emptyIcon} aria-hidden="true">📦</span>
+              <p>Nenhum item selecionado</p>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Detail panel */}
-      <div className={`${styles.detail} ${selectedProject ? styles.visible : ""}`}>
-        {selectedProject ? (
-          <ProjectDetail project={selectedProject} />
-        ) : (
-          <div className={styles.emptyDetail}>
-            <span className={styles.emptyIcon} aria-hidden="true">📦</span>
-            <p>Nenhum item selecionado</p>
-          </div>
-        )}
-      </div>
+      {/* Hint — full width, pinned toward footer */}
+      <p className={styles.hint}>Selecione um item para ver detalhes</p>
     </div>
   );
 }

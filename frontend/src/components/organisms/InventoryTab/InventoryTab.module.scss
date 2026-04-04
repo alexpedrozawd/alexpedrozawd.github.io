@@ -3,9 +3,16 @@
 
 .container {
   display: flex;
-  gap: $space-md;
+  flex-direction: column;
   padding: $space-lg;
   animation: fadeInUp 0.3s ease both;
+  min-height: 100%;
+}
+
+.row {
+  display: flex;
+  gap: $space-md;
+  flex: 1;
 }
 
 .grid {
@@ -44,7 +51,9 @@
   color: $color-disabled;
   font-style: italic;
   text-align: center;
-  margin-top: $space-sm;
+  width: 100%;
+  margin-top: auto;
+  padding-top: $space-md;
 }
 
 // Detail panel
