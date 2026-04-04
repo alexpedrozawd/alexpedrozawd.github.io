@@ -1,4 +1,5 @@
-from pydantic import BaseModel, EmailStr, field_validator
+from pydantic import BaseModel, EmailStr, Field, field_validator
+from app.schemas.base import Link
 from app.core.security import sanitize_text
 
 
@@ -41,3 +42,4 @@ class ContactRequest(BaseModel):
 class ContactResponse(BaseModel):
     success: bool
     message: str
+    links: dict[str, Link] = Field(default_factory=dict)
