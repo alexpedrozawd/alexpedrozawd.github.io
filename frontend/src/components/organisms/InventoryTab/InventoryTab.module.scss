@@ -33,6 +33,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: $space-xs;
+
+  @media (max-width: 520px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .hint {
