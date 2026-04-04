@@ -63,7 +63,7 @@ const SIDE_QUESTS: Quest[] = [
     type: "side",
     title: "Estágio em Manutenção e Redes",
     organisation: "SENAI-PB",
-    period: "2015 – 2016",
+    period: "2014 – 2015",
     description:
       "Estágio supervisionado com foco em manutenção de computadores, infraestrutura de redes e suporte técnico.",
     completed: true,
@@ -75,7 +75,7 @@ const SIDE_QUESTS: Quest[] = [
     organisation: "ProgramaAI",
     period: "2026",
     description:
-      "Certificação em desenvolvimento fullstack moderno e ferramentas de Inteligência Artificial aplicadas ao desenvolvimento de software.",
+      "Certificação em desenvolvimento fullstack moderno e ferramentas de Inteligência Artificial aplicadas ao desenvolvimento de software (certificados ProgramaAI).",
     completed: true,
   },
 ];
