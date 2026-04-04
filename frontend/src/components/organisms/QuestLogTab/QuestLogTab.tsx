@@ -18,21 +18,31 @@ const MAIN_QUESTS: Quest[] = [
   {
     id: "mq-2",
     type: "main",
-    title: "Suporte Técnico",
-    organisation: "Empresas Diversas",
-    period: "2015 – 2018",
+    title: "Redes & SysAdmin",
+    organisation: "HostDime Brasil",
+    period: "2015 – 2016",
     description:
-      "Atendimento ao usuário final, resolução de incidentes e suporte de nível 1 e 2. Consolidação das bases de troubleshooting.",
+      "Administração de servidores Linux/Windows, Active Directory, DHCP, DNS, VPN e infraestrutura de redes corporativas.",
     completed: true,
   },
   {
     id: "mq-3",
     type: "main",
-    title: "Redes & SysAdmin",
-    organisation: "Empresas de TI",
-    period: "2018 – 2022",
+    title: "Suporte Técnico",
+    organisation: "Webtec Sistemas",
+    period: "2019",
     description:
-      "Administração de servidores Linux/Windows, Active Directory, DHCP, DNS, VPN e infraestrutura de redes corporativas.",
+      "Atendimento ao usuário final, resolução de problemas de suporte de nível 1 e 2.",
+    completed: true,
+  },
+  {
+    id: "mq-5",
+    type: "main",
+    title: "Suporte Técnico",
+    organisation: "Logon Informática",
+    period: "2020 – 2024",
+    description:
+      "Atendimento ao usuário final, resolução de incidentes e suporte de nível 1 e 2. Consolidação das bases de troubleshooting.",
     completed: true,
   },
   {
