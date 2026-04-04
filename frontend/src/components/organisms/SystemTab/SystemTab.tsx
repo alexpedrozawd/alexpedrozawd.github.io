@@ -18,6 +18,7 @@ export function SystemTab() {
     status,
     errorMessage,
     successMessage,
+    nameError,
     handleChange,
     handleSubmit,
   } = useContactForm();
@@ -73,12 +74,18 @@ export function SystemTab() {
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                className={styles.input}
+                className={`${styles.input} ${nameError ? styles.inputError : ""}`}
                 placeholder="Seu nome"
                 required
                 maxLength={120}
                 autoComplete="name"
+                aria-describedby={nameError ? "name-error" : undefined}
               />
+              {nameError && (
+                <p id="name-error" className={styles.fieldError} role="alert">
+                  {nameError}
+                </p>
+              )}
             </div>
 
             <div className={styles.field}>

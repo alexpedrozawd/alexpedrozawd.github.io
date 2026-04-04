@@ -18,21 +18,38 @@ function sanitizeField(value: string): string {
   return value.replace(/[<>"'`;\\]/g, "").trimStart();
 }
 
+const NAME_REGEX = /^[a-zA-ZÀ-ÿ\s]+$/;
+
+function validateName(value: string): string {
+  const trimmed = value.trim();
+  if (!trimmed) return "";
+  if (!NAME_REGEX.test(trimmed))
+    return "Nome inválido: use apenas letras, sem números ou símbolos.";
+  if (trimmed.replace(/\s/g, "").length < 3)
+    return "Nome deve ter no mínimo 3 letras.";
+  return "";
+}
+
 export function useContactForm() {
   const [form, setForm] = useState<ContactFormData>(INITIAL_FORM);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [successMessage, setSuccessMessage] = useState<string>("");
+  const [nameError, setNameError] = useState<string>("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: sanitizeField(value) }));
+    const sanitized = sanitizeField(value);
+    setForm((prev) => ({ ...prev, [name]: sanitized }));
+    if (name === "name") setNameError(validateName(sanitized));
   };
 
   const validate = (): string | null => {
     if (!form.name.trim()) return "Nome é obrigatório.";
+    const nameErr = validateName(form.name);
+    if (nameErr) return nameErr;
     if (!form.email.trim()) return "E-mail é obrigatório.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       return "Endereço de e-mail inválido.";
@@ -94,6 +111,7 @@ export function useContactForm() {
     status,
     errorMessage,
     successMessage,
+    nameError,
     handleChange,
     handleSubmit,
   };

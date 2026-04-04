@@ -145,6 +145,17 @@
   animation: spin 0.7s linear infinite;
 }
 
+.inputError {
+  border-color: rgba(192, 57, 43, 0.7) !important;
+  box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.15);
+}
+
+.fieldError {
+  font-size: 0.75rem;
+  color: #e74c3c;
+  margin: 0;
+}
+
 // Feedback
 .errorMsg {
   font-size: 0.75rem;
