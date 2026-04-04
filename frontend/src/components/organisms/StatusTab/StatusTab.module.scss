@@ -65,6 +65,8 @@
   color: $color-gold-light;
   letter-spacing: 0.06em;
   margin-bottom: 2px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .class {
@@ -147,6 +149,21 @@
   display: flex;
   flex-direction: column;
   gap: $space-xs;
+}
+
+@media (max-width: 520px) {
+  .heroRow {
+    flex-direction: column;
+    gap: $space-md;
+  }
+
+  .heroLeft {
+    width: 100%;
+  }
+
+  .heroRight {
+    width: 100%;
+  }
 }
 
 .lore {
