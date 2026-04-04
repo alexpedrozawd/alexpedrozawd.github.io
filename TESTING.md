@@ -31,27 +31,31 @@ pytest tests/test_projects.py -v
 | Teste | Descrição |
 |-------|-----------|
 | `test_list_projects_returns_200` | GET /projects/ retorna HTTP 200 |
-| `test_list_projects_schema` | Resposta contém `projects` e `total` |
+| `test_list_projects_schema` | Resposta contém `projects`, `total` e `links` |
 | `test_list_projects_has_three_items` | Exatamente 3 projetos |
-| `test_get_project_by_valid_id` | GET /projects/1 retorna projeto correto |
+| `test_get_project_by_valid_id` | GET /projects/1 retorna projeto correto com `links` |
 | `test_get_project_by_invalid_id_returns_404` | ID inexistente retorna 404 |
 | `test_project_status_is_coming_soon` | Todos os projetos têm status `coming_soon` |
 | `test_health_endpoint` | GET /health retorna `{"status": "ok"}` |
+| `test_list_projects_cache_headers` | Resposta contém `Cache-Control` e `ETag` |
 
 #### `tests/test_contact.py`
 
 | Teste | Descrição |
 |-------|-----------|
-| `test_contact_returns_200_when_email_succeeds` | Envio bem-sucedido retorna 200 |
+| `test_contact_returns_201_when_email_succeeds` | Envio bem-sucedido retorna **201 Created** |
 | `test_contact_returns_500_when_email_fails` | Falha no SMTP retorna 500 |
+| `test_contact_response_has_links` | Resposta inclui `links` HATEOAS |
 | `test_contact_rejects_missing_name` | Nome vazio retorna 422 |
 | `test_contact_rejects_invalid_email` | E-mail inválido retorna 422 |
 | `test_contact_rejects_script_injection_in_name` | XSS no nome retorna 422 |
 | `test_contact_rejects_overly_long_message` | Mensagem >5000 chars retorna 422 |
 
+> **Atenção:** O endpoint de contato agora retorna `201 Created` (não `200 OK`). Testes legados que checavam `== 200` precisam ser atualizados para `== 201`.
+
 ### Mocking
 
-O serviço de e-mail é mockado com `unittest.mock.AsyncMock` para que os testes não dependam de um servidor SMTP real:
+O serviço de e-mail é mockado com `unittest.mock.AsyncMock`:
 
 ```python
 with patch(
@@ -60,6 +64,7 @@ with patch(
 ) as mock_send:
     mock_send.return_value = None
     response = client.post("/api/v1/contact/", json=VALID_PAYLOAD)
+    assert response.status_code == 201
 ```
 
 ---
@@ -92,20 +97,23 @@ npm run test:watch
 
 | Teste | Descrição |
 |-------|-----------|
-| renders developer name | Nome "Alexandre Pedroza" visível |
-| renders level 99 badge | Badge de nível presente |
-| renders all six skill bars | 6 skills renderizadas |
-| renders avatar image | `<img>` com alt correto |
-| renders developer role | Texto de cargo visível |
+| renders developer name | "Alexandre Pedroza" visível |
+| renders level 99 badge | Badge LVL 99 presente |
+| renders all six skill bars | 6 skills renderizadas (Bootstrap, React, TypeScript, Python, FastAPI, ClaudeCode) |
+| renders avatar image | `<img>` com alt "Alexandre Pedroza" |
+| renders developer role | "Desenvolvedor Fullstack" visível |
+| renders cv buttons | Botões "Curriculum LinkedIn" e "Curriculum Vitae" presentes |
+| renders pergaminho section | Seção "Pergaminho do Herói" visível |
 
 #### `InventoryTab.test.tsx`
 
 | Teste | Descrição |
 |-------|-----------|
-| renders three project slots | 3 slots presentes |
-| renders project titles | Títulos Alpha/Beta/Gamma visíveis |
+| renders four project slots | 4 slots (Alpha, Beta, Gamma, Delta) |
+| renders project titles | Títulos visíveis |
 | shows detail panel on click | Painel de detalhes aparece ao clicar |
 | deselects slot on second click | `aria-pressed` volta a `false` |
+| renders hint text | "Selecione um item para ver detalhes" visível |
 
 #### `useContactForm.test.ts`
 
@@ -115,7 +123,10 @@ npm run test:watch
 | updates form field | `handleChange` atualiza estado |
 | strips dangerous characters | Sanitização funciona |
 | sets error on empty name | Validação de campo vazio |
-| calls api and sets success | Submissão bem-sucedida |
+| sets nameError on invalid characters | Números/símbolos no nome geram `nameError` |
+| sets nameError on short name | Nome com < 3 letras gera `nameError` |
+| clears nameError on valid name | Nome válido limpa o erro |
+| calls formspree and sets success | Submissão bem-sucedida via Formspree |
 | sets error on api failure | Erro de rede capturado |
 
 ---
@@ -128,5 +139,5 @@ npm run test:watch
 | `app/schemas/` | ~90% |
 | `app/services/project_service.py` | ~100% |
 | `app/core/security.py` | ~85% |
-| Frontend hooks | ~90% |
+| Frontend hooks (`useContactForm`) | ~90% |
 | Frontend organisms (Status, Inventory) | ~80% |

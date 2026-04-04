@@ -1,6 +1,27 @@
 # Guia de Deploy — GitHub Pages
 
-## Passo 1 — Autenticar o GitHub CLI (fazer uma vez)
+O site está disponível em: **https://alexpedrozawd.github.io/**
+
+Qualquer push na branch `main` aciona automaticamente o workflow de build e deploy.
+
+---
+
+## Como funciona o CI/CD
+
+```
+push → main
+  → .github/workflows/deploy.yml
+    → Node 24 + npm ci
+    → vite build (injeta VITE_FORMSPREE_URL do GitHub Secret)
+    → actions/deploy-pages
+  → https://alexpedrozawd.github.io/
+```
+
+---
+
+## Setup inicial (feito uma vez)
+
+### Passo 1 — Autenticar o GitHub CLI
 
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
@@ -8,15 +29,9 @@ gh auth login
 # → GitHub.com → HTTPS → Login with a web browser
 ```
 
----
-
-## Passo 2 — Criar repositório e fazer push
+### Passo 2 — Criar repositório e fazer push
 
 ```bash
-export PATH="$HOME/.local/bin:$PATH"
-cd /home/a-p/portfolio
-
-# Cria o repo público no GitHub (já como user page)
 gh repo create alexpedrozawd.github.io \
   --public \
   --description "Portfólio — Dark Fantasy RPG Pause Menu" \
@@ -25,45 +40,49 @@ gh repo create alexpedrozawd.github.io \
   --push
 ```
 
----
-
-## Passo 3 — Ativar GitHub Pages no repositório
+### Passo 3 — Ativar GitHub Pages
 
 1. Acesse: https://github.com/alexpedrozawd/alexpedrozawd.github.io/settings/pages
 2. Em **Source**, selecione: **GitHub Actions**
 3. Salve.
 
-O workflow `.github/workflows/deploy.yml` fará o build e deploy automaticamente.
+### Passo 4 — Configurar o Formspree
 
----
+O formulário de contato em produção usa [Formspree](https://formspree.io) (plano Free: 50 envios/mês).
 
-## Passo 4 — Configurar o Formspree (formulário de contato)
-
-1. Cadastre-se em https://formspree.io (plano Free: 50 envios/mês)
+1. Crie uma conta em https://formspree.io
 2. Crie um novo form com o e-mail `alexandrepedrozamb@gmail.com`
 3. Copie o endpoint (ex: `https://formspree.io/f/xpwzgkab`)
-4. No repositório GitHub: **Settings → Secrets and variables → Actions → New secret**
+4. No repositório GitHub: **Settings → Secrets and variables → Actions → New repository secret**
    - Nome: `VITE_FORMSPREE_URL`
    - Valor: seu endpoint do Formspree
-5. Re-execute o workflow (ou faça qualquer push na `main`)
 
 ---
 
-## Passo 5 — Acompanhar o deploy
-
-- Acesse: https://github.com/alexpedrozawd/alexpedrozawd.github.io/actions
-- Aguarde o workflow **Deploy to GitHub Pages** ficar verde ✅
-- Site disponível em: **https://alexpedrozawd.github.io/**
-
----
-
-## Atualizações futuras
-
-Qualquer push na branch `main` aciona automaticamente o build e o deploy.
+## Atualizações
 
 ```bash
 cd /home/a-p/portfolio
 git add .
-git commit -m "feat: minha atualização"
+git commit -m "feat: descrição da alteração"
 git push
 ```
+
+Acompanhe o progresso em: https://github.com/alexpedrozawd/alexpedrozawd.github.io/actions
+
+---
+
+## Variáveis de ambiente em produção
+
+| Secret (GitHub) | Uso |
+|-----------------|-----|
+| `VITE_FORMSPREE_URL` | Endpoint do Formspree para o formulário de contato |
+
+---
+
+## Notas técnicas
+
+- O build usa `vite build` diretamente (sem `tsc &&`) para evitar falsos positivos do TypeScript com JSX em arrays de constantes
+- `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true` evita warning de deprecação do Node 20 nas Actions
+- O backend FastAPI **não é deployado** — é mantido no repositório para uso futuro em servidor dedicado
+- A branch de deploy é `gh-pages`, gerenciada automaticamente pelo workflow

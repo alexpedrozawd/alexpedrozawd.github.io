@@ -11,21 +11,22 @@ O projeto segue **Arquitetura em Camadas** no backend e **Atomic Design** no fro
 ```
 backend/
 ├── app/
-│   ├── main.py              # Factory de aplicação (create_app)
+│   ├── main.py                  # Factory de aplicação (create_app)
 │   ├── core/
-│   │   ├── config.py        # Settings via pydantic-settings (.env)
-│   │   └── security.py      # Limiter, sanitização, middleware de headers
+│   │   ├── config.py            # Settings via pydantic-settings (.env)
+│   │   └── security.py          # Limiter, sanitização, middleware de headers
 │   ├── routers/
-│   │   ├── contact.py       # POST /api/v1/contact/
-│   │   └── projects.py      # GET  /api/v1/projects/ e /{id}
+│   │   ├── contact.py           # POST /api/v1/contact/ → 201 Created
+│   │   └── projects.py          # GET /api/v1/projects/ e /{id} com cache
 │   ├── schemas/
-│   │   ├── contact.py       # ContactRequest / ContactResponse (Pydantic)
-│   │   └── project.py       # Project / ProjectsResponse (Pydantic)
+│   │   ├── base.py              # Link (HATEOAS) — href + method
+│   │   ├── contact.py           # ContactRequest / ContactResponse
+│   │   └── project.py           # Project / ProjectsResponse
 │   └── services/
 │       ├── contact_service.py   # Envio de e-mail via aiosmtplib
-│       └── project_service.py   # Dados de projetos (em memória)
+│       └── project_service.py   # Dados de projetos em memória com links HATEOAS
 └── tests/
-    ├── conftest.py          # TestClient fixture
+    ├── conftest.py
     ├── test_contact.py
     └── test_projects.py
 ```
@@ -37,8 +38,8 @@ HTTP Request
   → FastAPI Router
     → Pydantic Schema (validação + sanitização)
       → Service (lógica de negócio)
-        → Response Schema
-HTTP Response
+        → Response Schema (inclui links HATEOAS)
+HTTP Response (com Cache-Control, ETag, Vary)
 ```
 
 ### Decisões de design
@@ -50,6 +51,79 @@ HTTP Response
 | Pydantic `field_validator` | Sanitização e validação acopladas ao schema |
 | `aiosmtplib` | Async nativo, sem bloquear o event loop |
 | `slowapi` | Integração direta com FastAPI para rate limiting |
+| `Link` em `base.py` | HATEOAS reutilizável em todos os schemas |
+| ETag via MD5 | Cache condicional sem overhead de banco de dados |
+
+### REST Compliance
+
+O backend foi projetado para alto nível de conformidade REST:
+
+| Critério | Status |
+|---|---|
+| URLs baseadas em recursos | ✅ `/projects/`, `/projects/{id}`, `/contact/` |
+| Métodos HTTP semânticos | ✅ GET (leitura), POST (criação → 201) |
+| Stateless | ✅ Sem sessões, cada request independente |
+| Cacheabilidade | ✅ `Cache-Control: public, max-age=300`, `ETag`, `Vary: Accept` |
+| HATEOAS | ✅ `links` em todas as respostas |
+| CORS explícito | ✅ GET, POST, HEAD, OPTIONS |
+
+> **Nota:** Em produção o frontend usa Formspree (site estático no GitHub Pages), portanto o backend FastAPI não é executado. A API é totalmente funcional para deploy futuro em servidor dedicado.
+
+### Contratos de API
+
+#### `GET /api/v1/projects/`
+
+```json
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Projeto Alpha",
+      "status": "coming_soon",
+      "tags": [],
+      "icon": "⚔️",
+      "links": {
+        "self":       { "href": "/api/v1/projects/1", "method": "GET" },
+        "collection": { "href": "/api/v1/projects/",  "method": "GET" }
+      }
+    }
+  ],
+  "total": 3,
+  "links": {
+    "self": { "href": "/api/v1/projects/", "method": "GET" }
+  }
+}
+```
+
+Headers de resposta:
+```
+Cache-Control: public, max-age=300, stale-while-revalidate=60
+ETag: "d41d8cd98f00b204e9800998ecf8427e"
+Vary: Accept
+```
+
+#### `GET /api/v1/projects/{id}`
+
+Mesma estrutura de um projeto individual. Retorna 404 se não encontrado.
+
+#### `POST /api/v1/contact/` → `201 Created`
+
+**Request:**
+```json
+{ "name": "...", "email": "...", "subject": "...", "message": "..." }
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Mensagem enviada com sucesso! Responderei em breve.",
+  "links": {
+    "self":     { "href": "/api/v1/contact/",  "method": "POST" },
+    "projects": { "href": "/api/v1/projects/", "method": "GET"  }
+  }
+}
+```
 
 ---
 
@@ -58,79 +132,130 @@ HTTP Response
 ```
 frontend/src/
 ├── components/
-│   ├── atoms/               # Componentes primitivos, sem lógica de domínio
-│   │   ├── RPGProgressBar/
-│   │   └── OrnamentDivider/
-│   ├── molecules/           # Composição de átomos com contexto de domínio
-│   │   ├── SkillBar/
-│   │   ├── ProjectSlot/
-│   │   └── QuestEntry/
-│   └── organisms/           # Seções completas da UI, podem ter estado próprio
-│       ├── PauseMenu/       # Container principal (overlay + window)
-│       ├── TabNavigation/
-│       ├── StatusTab/
-│       ├── InventoryTab/
-│       ├── QuestLogTab/
-│       └── SystemTab/
+│   ├── atoms/
+│   │   ├── icons/
+│   │   │   ├── BackpackIcon.tsx     # SVG medieval backpack (tab Inventário)
+│   │   │   └── VikingAxeIcon.tsx    # SVG viking axe (usado internamente)
+│   │   ├── OrnamentDivider/         # Divisor decorativo com ornamento central
+│   │   └── RPGProgressBar/          # Barra de progresso com prop `thin`
+│   ├── molecules/
+│   │   ├── ProjectSlot/             # Card clicável de projeto no inventário
+│   │   ├── QuestEntry/              # Entrada de quest no log
+│   │   └── SkillBar/                # SkillBar com barra fina (thin RPGProgressBar)
+│   └── organisms/
+│       ├── PauseMenu/               # Container principal (overlay + window 96vh)
+│       ├── TabNavigation/           # Navegação entre 4 abas
+│       ├── StatusTab/               # Avatar, atributos, pergaminho, habilidades, lore
+│       ├── InventoryTab/            # Grid de projetos + painel de detalhes
+│       ├── QuestLogTab/             # Histórico com filtros (Todas/Principais/Secundárias)
+│       └── SystemTab/               # Formulário de contato ("Cartas")
 ├── hooks/
-│   ├── useTabNavigation.ts  # Estado da aba ativa
-│   └── useContactForm.ts    # Estado + lógica do formulário de contato
-├── services/
-│   └── api.ts               # Camada de acesso à API (fetch wrapper)
+│   ├── useTabNavigation.ts          # Estado da aba ativa
+│   └── useContactForm.ts            # Estado, validação e envio via Formspree
 ├── styles/
-│   ├── _variables.scss      # Design tokens (cores, tipografia, espaçamento)
-│   ├── _mixins.scss         # Mixins reutilizáveis
-│   └── global.scss          # Reset, estilos base, keyframes compartilhados
+│   ├── _variables.scss              # Design tokens (cores, tipografia, espaçamento)
+│   ├── _mixins.scss                 # gold-glow, dark-scrollbar, hover-lift, parchment-text
+│   └── global.scss                  # Reset, estilos base, keyframes (fadeInUp, pulse-glow)
 └── types/
-    └── index.ts             # Tipos TypeScript centralizados
+    └── index.ts                     # TabId, Skill, Project (icon: ReactNode), Quest, etc.
 ```
 
 ### Atomic Design
 
 | Nível    | Responsabilidade | Exemplos |
 |----------|-----------------|----------|
-| Atom     | Renderiza um único elemento visual primitivo | `RPGProgressBar`, `OrnamentDivider` |
-| Molecule | Combina átomos para representar um conceito de domínio | `SkillBar`, `ProjectSlot` |
-| Organism | Seção completa da interface; pode ter estado local | `StatusTab`, `InventoryTab` |
+| Atom     | Elemento visual primitivo, sem lógica de domínio | `RPGProgressBar`, `OrnamentDivider`, `BackpackIcon` |
+| Molecule | Composição de átomos com contexto de domínio | `SkillBar`, `ProjectSlot`, `QuestEntry` |
+| Organism | Seção completa da interface, pode ter estado local | `StatusTab`, `InventoryTab`, `QuestLogTab` |
+
+### Aba Status — Estrutura de layout
+
+```
+.container
+  .heroRow (flex: desktop = lado a lado / mobile ≤520px = coluna)
+    .heroLeft
+      .hero (avatar + identity)
+        avatarWrapper (img + glow animado)
+        identity (name, class, levelBadge)
+    .heroRight
+      .section (Atributos — HP/MP/XP com RPGProgressBar thin)
+  OrnamentDivider
+  .pergaminhoSection (Pergaminho do Herói — 2 botões de CV)
+  OrnamentDivider ⚙
+  .section (Habilidades — 6 SkillBars)
+  OrnamentDivider
+  .lore (frase sobre mim)
+```
+
+### Aba Inventário — Estrutura de layout
+
+```
+.container (flex-column, min-height: 100%)
+  .row (flex)
+    .grid (280px / 180px em mobile)
+      gridTitle
+      .slots (grid: 3 colunas desktop / 2 colunas ≤1024px)
+        ProjectSlot × 4 (Alpha, Beta, Gamma, Delta)
+    .detail (painel de detalhes, flex: 1)
+  .hint (margin-top: auto — fica ao fundo)
+```
+
+### Tipo `Project.icon` — ReactNode
+
+O campo `icon` em `Project` aceita `ReactNode` (não apenas `string`), permitindo SVGs customizados:
+
+```typescript
+// types/index.ts
+import type { ReactNode } from "react";
+export interface Project {
+  icon: ReactNode; // string emoji ou componente SVG
+}
+```
+
+### Hook `useContactForm` — Validação em tempo real
+
+```typescript
+// Validação do nome: só letras (incluindo acentuadas) e espaços, mínimo 3 letras
+const NAME_REGEX = /^[a-zA-ZÀ-ÿ\s]+$/;
+
+function validateName(value: string): string {
+  if (!NAME_REGEX.test(value.trim())) return "Nome inválido: use apenas letras...";
+  if (value.replace(/\s/g, "").length < 3) return "Nome deve ter no mínimo 3 letras.";
+  return "";
+}
+```
+
+- Erro exibido inline abaixo do campo enquanto o usuário digita
+- Input com borda vermelha quando inválido (`inputError`)
+- `validate()` também bloqueia o envio no submit
 
 ### CSS Architecture
 
-- **CSS Modules** por componente → sem colisão de nomes, escopo local
-- **SCSS** com `_variables.scss` e `_mixins.scss` como design system
-- `additionalData` no Vite injeta as variáveis/mixins em todos os módulos
-- Convenção BEM não é necessária com CSS Modules
+- **CSS Modules** por componente → escopo local, sem colisão de nomes
+- **SCSS** com `@use` (não `@import`) — cada módulo importa explicitamente variáveis e mixins
+- `additionalData` no Vite injeta `@use` globalmente apenas para `global.scss`
+- Breakpoints principais: `520px` (mobile Status), `1024px` (grid Inventário), `480px` (TabNavigation labels)
 
 ### Gerenciamento de Estado
 
-Estado é colocado no menor escopo possível:
-
 | Estado | Localização |
 |--------|-------------|
-| Aba ativa | `useTabNavigation` (hook, estado local) |
-| Form de contato | `useContactForm` (hook, estado local) |
+| Aba ativa | `useTabNavigation` (hook, elevado ao `App`) |
+| Form de contato + erros | `useContactForm` (hook, estado local) |
 | Projeto selecionado | `InventoryTab` (estado local do componente) |
-| Dados de projetos | Constante no `InventoryTab` (sem API no MVP) |
+| Dados de projetos/quests/skills | Constantes em cada organism (sem API no frontend) |
 
 ---
 
-## Contratos de API
+## Deploy — GitHub Actions
 
-### `GET /api/v1/projects/`
-```json
-{ "projects": [...], "total": 3 }
+```yaml
+# .github/workflows/deploy.yml (resumo)
+- node-version: 24
+- env: FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+- run: npm ci && vite build   # (não tsc && vite build — evita false positives)
+- VITE_FORMSPREE_URL injetado via GitHub Secret
+- Deploy: actions/deploy-pages
 ```
 
-### `GET /api/v1/projects/{id}`
-```json
-{ "id": 1, "title": "...", "status": "coming_soon", "tags": [], "icon": "⚔️" }
-```
-
-### `POST /api/v1/contact/`
-**Request:**
-```json
-{ "name": "...", "email": "...", "subject": "...", "message": "..." }
-```
-**Response:**
-```json
-{ "success": true, "message": "Mensagem enviada com sucesso!" }
-```
+O build de produção **não inclui o backend** — apenas os arquivos estáticos do Vite são deployados.

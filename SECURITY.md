@@ -17,9 +17,15 @@ def strip_dangerous_chars(cls, value: str) -> str:
     return cleaned
 ```
 
-- Caracteres perigosos `< > " ' ` ; \` são removidos via regex
-- Comprimentos máximos enforçados (nome: 120, assunto: 200, mensagem: 5000)
-- `EmailStr` do Pydantic valida formato de e-mail
+Limites de comprimento enforçados:
+
+| Campo | Limite |
+|-------|--------|
+| `name` | 120 caracteres |
+| `subject` | 200 caracteres |
+| `message` | 5.000 caracteres |
+
+`EmailStr` do Pydantic valida formato de e-mail automaticamente.
 
 ### 2. Rate Limiting
 
@@ -31,7 +37,7 @@ Endpoint de contato limitado a **5 requisições por minuto por IP**:
 async def send_contact(request: Request, payload: ContactRequest): ...
 ```
 
-Implementado via [slowapi](https://github.com/laurents/slowapi) + Redis-ready.
+Implementado via [slowapi](https://github.com/laurents/slowapi).
 
 ### 3. CORS Configurado
 
@@ -39,9 +45,9 @@ Apenas origens explicitamente listadas são aceitas:
 
 ```python
 CORSMiddleware(
-    allow_origins=settings.origins_list,  # ["http://localhost:5173"]
+    allow_origins=settings.origins_list,
     allow_credentials=False,
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "HEAD", "OPTIONS"],
     allow_headers=["Content-Type", "Accept"],
 )
 ```
@@ -86,29 +92,50 @@ function sanitizeField(value: string): string {
 
 Isso é **defesa em profundidade** — o backend sanitiza independentemente.
 
-### 2. Atributos de Segurança em Links Externos
+### 2. Validação de Nome em Tempo Real
 
-```tsx
-<a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+O campo "Nome do Aventureiro" valida enquanto o usuário digita:
+
+```typescript
+const NAME_REGEX = /^[a-zA-ZÀ-ÿ\s]+$/;
+
+function validateName(value: string): string {
+  if (!NAME_REGEX.test(value.trim()))
+    return "Nome inválido: use apenas letras, sem números ou símbolos.";
+  if (value.replace(/\s/g, "").length < 3)
+    return "Nome deve ter no mínimo 3 letras.";
+  return "";
+}
 ```
 
-`rel="noopener noreferrer"` previne `window.opener` exploitation.
+- Permite letras (incluindo acentuadas: ã, é, ç, etc.) e espaços
+- Bloqueia números, símbolos e caracteres especiais
+- Mínimo de 3 letras
+- Erro exibido inline com borda vermelha no input
 
-### 3. Sem Dangerously SetInnerHTML
+### 3. Atributos de Segurança em Links Externos
+
+```tsx
+<a href={url} target="_blank" rel="noopener noreferrer">
+```
+
+`rel="noopener noreferrer"` previne `window.opener` exploitation em todos os links externos (LinkedIn, Google Drive, Formspree).
+
+### 4. Sem `dangerouslySetInnerHTML`
 
 Nenhum uso de `dangerouslySetInnerHTML` em todo o frontend.
 
-### 4. TypeScript Strict
+### 5. TypeScript Strict
 
 `tsconfig.json` com `"strict": true` previne classe de bugs de tipo em tempo de compilação.
 
 ---
 
-## Próximos Passos (Produção)
+## Próximos Passos (Produção com servidor)
 
-- [ ] Adicionar HTTPS / TLS (nginx, Caddy ou serviço de hospedagem)
-- [ ] HSTS header
+- [ ] HTTPS / TLS (nginx, Caddy ou serviço de hospedagem)
+- [ ] HSTS header (`Strict-Transport-Security`)
 - [ ] Autenticação JWT se área administrativa for adicionada
 - [ ] Substituir rate limiter por Redis para múltiplas instâncias
 - [ ] Subresource Integrity (SRI) para assets externos
-- [ ] Auditoria de dependências (`pip-audit`, `npm audit`)
+- [ ] Auditoria periódica de dependências (`pip-audit`, `npm audit`)
