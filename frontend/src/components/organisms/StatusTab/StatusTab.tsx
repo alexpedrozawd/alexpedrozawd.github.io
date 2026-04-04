@@ -16,7 +16,6 @@ const SKILLS: Skill[] = [
   { name: "TypeScript", value: 75 },
   { name: "Python",     value: 80 },
   { name: "FastAPI",    value: 78 },
-  { name: "ClaudeCode", value: 88 },
 ];
 
 const ATTRIBUTES = [
