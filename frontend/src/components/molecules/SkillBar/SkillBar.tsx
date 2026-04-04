@@ -19,13 +19,15 @@ export function SkillBar({ skill }: SkillBarProps) {
   const colorKey = skill.name.toLowerCase().replace(/\s+/g, "");
   const color = skill.color ?? SKILL_COLORS[colorKey];
 
+  const displayValue = Math.round(skill.value * 99 / 100);
+
   return (
     <div className={styles.container}>
       <RPGProgressBar
         value={skill.value}
         color={color}
         label={skill.name}
-        showPercent
+        valueLabel={`${displayValue}/99`}
         thin
       />
     </div>

@@ -5,6 +5,7 @@ interface RPGProgressBarProps {
   color?: string;
   label?: string;
   showPercent?: boolean;
+  valueLabel?: string; // exibe string customizada no lugar da porcentagem
   animated?: boolean;
   thin?: boolean;
 }
@@ -14,6 +15,7 @@ export function RPGProgressBar({
   color,
   label,
   showPercent = false,
+  valueLabel,
   animated = false,
   thin = false,
 }: RPGProgressBarProps) {
@@ -35,9 +37,10 @@ export function RPGProgressBar({
         />
         <div className={styles.sheen} />
       </div>
-      {showPercent && (
-        <span className={styles.percent}>{clampedValue}%</span>
-      )}
+      {valueLabel !== undefined
+        ? <span className={styles.percent}>{valueLabel}</span>
+        : showPercent && <span className={styles.percent}>{clampedValue}%</span>
+      }
     </div>
   );
 }
