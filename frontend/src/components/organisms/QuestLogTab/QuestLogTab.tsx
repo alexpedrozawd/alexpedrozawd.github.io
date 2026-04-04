@@ -10,7 +10,7 @@ const MAIN_QUESTS: Quest[] = [
     type: "main",
     title: "Manutenção de Computadores",
     organisation: "Autônomo",
-    period: "2010 – 2014",
+    period: "2010 – 2019",
     description:
       "Início da jornada: montagem, formatação e reparo de hardware e software. Primeiro contato com o universo da tecnologia ainda na adolescência.",
     completed: true,
@@ -18,11 +18,11 @@ const MAIN_QUESTS: Quest[] = [
   {
     id: "mq-2",
     type: "main",
-    title: "Redes & SysAdmin",
+    title: "Suporte & SysAdmin",
     organisation: "HostDime Brasil",
     period: "2015 – 2016",
     description:
-      "Administração de servidores Linux/Windows, Active Directory, DHCP, DNS, VPN e infraestrutura de redes corporativas.",
+      "Administração de servidores Linux/Windows com cPanel/WHM & Plesk. Atendimento ao cliente via tickets e chats, acessando servidores de hospedagens de sites via SSH para instalação, configurações, backups, migrações e resolução de problemas",
     completed: true,
   },
   {
