@@ -42,7 +42,7 @@ const MAIN_QUESTS: Quest[] = [
     organisation: "Nanda Mac & Freelancer",
     period: "2025 – Presente",
     description:
-      "Desenvolvimento de aplicações web com React, TypeScript, Python e FastAPI. Foco em interfaces modernas e APIs escaláveis.",
+      "Desenvolvimento de aplicações web com React, TypeScript, Python e FastAPI. Foco em interfaces modernas e APIs escaláveis. Conhecimento em ferramentas de IA como Claude Code e Antigravity",
     completed: false,
   },
 ];
