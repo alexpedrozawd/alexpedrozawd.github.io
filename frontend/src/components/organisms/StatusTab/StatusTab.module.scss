@@ -2,7 +2,7 @@
 @use "../../../styles/mixins" as *;
 
 .container {
-  padding: $space-lg;
+  padding: $space-sm $space-lg;
   animation: fadeInUp 0.3s ease both;
 }
 
@@ -10,7 +10,7 @@
   display: flex;
   gap: $space-xl;
   align-items: flex-start;
-  margin-bottom: $space-md;
+  margin-bottom: $space-sm;
 }
 
 .heroLeft {
@@ -103,7 +103,7 @@
 }
 
 .section {
-  margin-bottom: $space-md;
+  margin-bottom: $space-sm;
 }
 
 .sectionTitle {
@@ -112,7 +112,7 @@
   color: $color-muted;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  margin-bottom: $space-sm;
+  margin-bottom: 4px;
   text-align: center;
 }
 
@@ -172,7 +172,7 @@
   font-style: italic;
   color: $color-muted;
   line-height: 1.7;
-  padding: $space-sm $space-md;
+  padding: 4px $space-md;
   border-left: 2px solid $color-gold-dark;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 0 $radius-sm $radius-sm 0;
