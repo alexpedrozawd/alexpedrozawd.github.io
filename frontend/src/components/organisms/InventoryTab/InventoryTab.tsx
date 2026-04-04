@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ProjectSlot } from "../../molecules/ProjectSlot/ProjectSlot";
 import { RPGProgressBar } from "../../atoms/RPGProgressBar/RPGProgressBar";
-import { VikingAxeIcon } from "../../atoms/icons/VikingAxeIcon";
 import type { Project } from "../../../types";
 import styles from "./InventoryTab.module.scss";
 
@@ -37,14 +36,6 @@ const PROJECTS: Project[] = [
     status: "coming_soon",
     tags: [],
     icon: "🏹",
-  },
-  {
-    id: 5,
-    title: "Projeto Epsilon",
-    description: "Em breve...",
-    status: "coming_soon",
-    tags: [],
-    icon: <VikingAxeIcon size="2.4rem" />,
   },
 ];
 
