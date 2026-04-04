@@ -148,7 +148,7 @@
 .skills {
   display: flex;
   flex-direction: column;
-  gap: $space-xs;
+  gap: 2px;
 }
 
 @media (max-width: 520px) {
