@@ -1,9 +1,11 @@
+import type { ReactNode } from "react";
 import type { TabId } from "../../../types";
+import { BackpackIcon } from "../../atoms/icons/BackpackIcon";
 import styles from "./TabNavigation.module.scss";
 
-const TABS: { id: TabId; label: string; icon: string }[] = [
-  { id: "status",   label: "Status",    icon: "⚔️" },
-  { id: "inventory", label: "Inventário", icon: "👝" },
+const TABS: { id: TabId; label: string; icon: ReactNode }[] = [
+  { id: "status",    label: "Status",     icon: "⚔️" },
+  { id: "inventory", label: "Inventário", icon: <BackpackIcon size="1.3rem" /> },
   { id: "questlog",  label: "Quest Log",  icon: "📜" },
   { id: "system",    label: "Sistema",    icon: "🗝️" },
 ];

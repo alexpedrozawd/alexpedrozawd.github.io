@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export type TabId = "status" | "inventory" | "questlog" | "system";
 
 export interface Skill {
@@ -12,7 +14,7 @@ export interface Project {
   description: string;
   status: "coming_soon" | "active" | "archived";
   tags: string[];
-  icon: string;
+  icon: ReactNode;
 }
 
 export interface Quest {
