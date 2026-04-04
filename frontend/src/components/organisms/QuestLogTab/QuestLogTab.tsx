@@ -29,28 +29,18 @@ const MAIN_QUESTS: Quest[] = [
     id: "mq-3",
     type: "main",
     title: "Suporte Técnico",
-    organisation: "Webtec Sistemas",
-    period: "2019",
+    organisation: "Webtec Sistemas & Logon Informática",
+    period: "2019 – 2024",
     description:
-      "Atendimento ao usuário final, resolução de problemas de suporte de nível 1 e 2.",
-    completed: true,
-  },
-  {
-    id: "mq-5",
-    type: "main",
-    title: "Suporte Técnico",
-    organisation: "Logon Informática",
-    period: "2020 – 2024",
-    description:
-      "Atendimento ao usuário final, resolução de incidentes e suporte de nível 1 e 2. Consolidação das bases de troubleshooting.",
+      "Atendimento ao usuário final via ligações, chat e tickets, resolução de problemas de suporte de nível 1, 2 e 3. Implantações e treinamentos de sistemas, assim como elaboração de documentação de projetos e artigos de ajuda ao usuário.",
     completed: true,
   },
   {
     id: "mq-4",
     type: "main",
     title: "Desenvolvedor Fullstack",
-    organisation: "Atual",
-    period: "2023 – Presente",
+    organisation: "Nanda Mac & Freelancer",
+    period: "2025 – Presente",
     description:
       "Desenvolvimento de aplicações web com React, TypeScript, Python e FastAPI. Foco em interfaces modernas e APIs escaláveis.",
     completed: false,
