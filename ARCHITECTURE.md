@@ -137,11 +137,11 @@ frontend/src/
 │   │   │   ├── BackpackIcon.tsx     # SVG medieval backpack (tab Inventário)
 │   │   │   └── VikingAxeIcon.tsx    # SVG viking axe (usado internamente)
 │   │   ├── OrnamentDivider/         # Divisor decorativo com ornamento central
-│   │   └── RPGProgressBar/          # Barra de progresso com prop `thin`
+│   │   └── RPGProgressBar/          # Barra de progresso com props `thin` e `valueLabel`
 │   ├── molecules/
 │   │   ├── ProjectSlot/             # Card clicável de projeto no inventário
 │   │   ├── QuestEntry/              # Entrada de quest no log
-│   │   └── SkillBar/                # SkillBar com barra fina (thin RPGProgressBar)
+│   │   └── SkillBar/                # Barra fina com valor X/99 (valueLabel prop)
 │   └── organisms/
 │       ├── PauseMenu/               # Container principal (overlay + window 96vh)
 │       ├── TabNavigation/           # Navegação entre 4 abas
@@ -182,7 +182,7 @@ frontend/src/
   OrnamentDivider
   .pergaminhoSection (Pergaminho do Herói — 2 botões de CV)
   OrnamentDivider ⚙
-  .section (Habilidades — 6 SkillBars)
+  .section (Habilidades — 5 SkillBars com valor X/99)
   OrnamentDivider
   .lore (frase sobre mim)
 ```
@@ -244,6 +244,31 @@ function validateName(value: string): string {
 | Form de contato + erros | `useContactForm` (hook, estado local) |
 | Projeto selecionado | `InventoryTab` (estado local do componente) |
 | Dados de projetos/quests/skills | Constantes em cada organism (sem API no frontend) |
+
+---
+
+## SEO e Compartilhamento (Open Graph)
+
+O `index.html` contém meta tags para preview de link em redes sociais:
+
+```html
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,...⚔️..." />
+
+<!-- Open Graph (WhatsApp, Facebook, LinkedIn, Discord) -->
+<meta property="og:type"        content="website" />
+<meta property="og:url"         content="https://alexpedrozawd.github.io/" />
+<meta property="og:title"       content="Alexandre Pedroza · Desenvolvedor Fullstack" />
+<meta property="og:description" content="Portfólio interativo com tema de RPG medieval..." />
+<meta property="og:image"       content="https://alexpedrozawd.github.io/og-image.jpg" />
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card"  content="summary" />
+<meta name="twitter:image" content="https://alexpedrozawd.github.io/og-image.jpg" />
+```
+
+A imagem `frontend/public/og-image.jpg` é um screenshot do site e é servida em
+`https://alexpedrozawd.github.io/og-image.jpg` pelo GitHub Pages.
 
 ---
 

@@ -16,6 +16,7 @@
 | Deploy    | GitHub Pages (frontend) via GitHub Actions                    |
 | Contato   | Formspree (substitui backend em produção estática)            |
 | Segurança | Rate limiting (slowapi), sanitização, security headers, CORS  |
+| SEO/Share | Open Graph + Twitter Card (preview em WhatsApp, Discord etc.) |
 
 ---
 
@@ -127,7 +128,7 @@ portfolio/
 └── frontend/
     └── src/
         ├── components/
-        │   ├── atoms/           # RPGProgressBar, OrnamentDivider, icons/
+        │   ├── atoms/           # RPGProgressBar (prop valueLabel), OrnamentDivider, icons/
         │   ├── molecules/       # SkillBar, ProjectSlot, QuestEntry
         │   └── organisms/       # PauseMenu, StatusTab, InventoryTab,
         │                        # QuestLogTab, SystemTab, TabNavigation
@@ -137,6 +138,11 @@ portfolio/
 ```
 
 Veja [ARCHITECTURE.md](./ARCHITECTURE.md) para detalhes completos.
+
+```
+frontend/public/
+└── og-image.jpg     # screenshot do site — usado como preview em redes sociais
+```
 
 ---
 
