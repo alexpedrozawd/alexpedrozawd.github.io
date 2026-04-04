@@ -8,12 +8,12 @@
   justify-content: center;
   gap: $space-xs;
   width: 100%;
-  min-height: 90px;
+  min-height: 115px;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid $color-gold-dark;
   border-radius: $radius-md;
   cursor: pointer;
-  padding: $space-md $space-sm;
+  padding: $space-lg $space-md;
   text-align: center;
   color: $color-parchment;
   font-family: $font-body;
@@ -47,7 +47,7 @@
 }
 
 .icon {
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   display: block;
   filter: drop-shadow(0 0 6px $color-gold-glow);
   line-height: 1.2;
@@ -55,7 +55,7 @@
 
 .title {
   font-family: $font-display;
-  font-size: 0.65rem;
+  font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: $color-gold;
@@ -63,11 +63,11 @@
 }
 
 .badge {
-  font-size: 0.55rem;
+  font-size: 0.65rem;
   color: $color-muted;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   border: 1px solid $color-gold-dark;
   border-radius: $radius-sm;
-  padding: 1px 5px;
+  padding: 2px 7px;
 }
