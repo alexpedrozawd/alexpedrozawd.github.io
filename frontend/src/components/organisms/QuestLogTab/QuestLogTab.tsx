@@ -53,7 +53,7 @@ const SIDE_QUESTS: Quest[] = [
     type: "side",
     title: "Bacharelado em Sistemas de Informação",
     organisation: "UNIESP",
-    period: "2018 – 2023",
+    period: "2012 – 2016",
     description:
       "Formação em análise de sistemas, banco de dados, engenharia de software e gestão de TI.",
     completed: true,
@@ -63,7 +63,7 @@ const SIDE_QUESTS: Quest[] = [
     type: "side",
     title: "Estágio em Manutenção e Redes",
     organisation: "SENAI-PB",
-    period: "2022 – 2023",
+    period: "2015 – 2016",
     description:
       "Estágio supervisionado com foco em manutenção de computadores, infraestrutura de redes e suporte técnico.",
     completed: true,
@@ -73,7 +73,7 @@ const SIDE_QUESTS: Quest[] = [
     type: "side",
     title: "Certificação Fullstack & IA",
     organisation: "ProgramaAI",
-    period: "2024",
+    period: "2026",
     description:
       "Certificação em desenvolvimento fullstack moderno e ferramentas de Inteligência Artificial aplicadas ao desenvolvimento de software.",
     completed: true,
