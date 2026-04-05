@@ -30,7 +30,7 @@ export function SystemTab() {
         {status === "success" ? (
           <div className={styles.successBox} role="alert">
             <span className={styles.successIcon}>✅</span>
-            <p>{successMessage}</p>
+            <span>{successMessage}</span>
           </div>
         ) : (
           <form
@@ -45,7 +45,7 @@ export function SystemTab() {
 
             <div className={styles.field}>
               <label htmlFor="contact-name" className={styles.label}>
-                Nome do Aventureiro
+                Nome do Aventureiro (Nome)
               </label>
               <input
                 id="contact-name"
@@ -93,7 +93,7 @@ export function SystemTab() {
                 name="subject"
                 value={form.subject}
                 onChange={handleChange}
-                className={styles.input}
+                className={`${styles.input} ${styles.selectInput}`}
                 required
               >
                 <option value="">Selecione um motivo...</option>

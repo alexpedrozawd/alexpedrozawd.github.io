@@ -95,7 +95,7 @@ export function useContactForm() {
         throw new Error(`Erro ${res.status}`);
       }
 
-      setSuccessMessage("Mensagem enviada com sucesso! Responderei em breve.");
+      setSuccessMessage("Carta enviada com sucesso! Responderei em breve.");
       setStatus("success");
       setForm(INITIAL_FORM);
     } catch (err: unknown) {

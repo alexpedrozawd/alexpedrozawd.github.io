@@ -105,6 +105,11 @@
   min-height: 120px;
 }
 
+.selectInput {
+  padding-right: 2.5rem;
+  appearance: auto;
+}
+
 // Submit
 .submitButton {
   align-self: flex-start;
@@ -168,7 +173,7 @@
 }
 
 .successBox {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: $space-sm;
   background: rgba(16, 185, 129, 0.1);

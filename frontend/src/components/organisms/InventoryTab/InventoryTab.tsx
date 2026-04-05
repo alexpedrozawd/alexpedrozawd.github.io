@@ -44,7 +44,7 @@ export function InventoryTab() {
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.gridTitle}>Inventário de Projetos</h3>
+      <h3 className={styles.gridTitle}>📖 Inventário de Projetos 📖</h3>
 
       {/* Grid + Detail row */}
       <div className={styles.row}>

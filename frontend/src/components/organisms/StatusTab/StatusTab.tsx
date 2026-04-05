@@ -76,7 +76,7 @@ export function StatusTab() {
             rel="noopener noreferrer"
             className={styles.cvButton}
           >
-            <span aria-hidden="true">⚔</span>
+            <span aria-hidden="true">📜</span>
             Curriculum LinkedIn
           </a>
           <a

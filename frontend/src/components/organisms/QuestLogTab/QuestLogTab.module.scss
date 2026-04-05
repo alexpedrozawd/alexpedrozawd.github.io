@@ -9,6 +9,7 @@
 
 .filters {
   display: flex;
+  align-items: center;
   gap: $space-xs;
   padding: $space-sm $space-lg;
   border-bottom: 1px solid rgba(92, 74, 30, 0.3);
@@ -17,6 +18,16 @@
   z-index: 5;
   background: rgba(10, 9, 20, 0.97);
   backdrop-filter: blur(4px);
+}
+
+.filterLabel {
+  font-family: $font-display;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $color-gold-dim;
+  margin-right: $space-xs;
+  flex-shrink: 0;
 }
 
 .filterBtn {
@@ -50,7 +61,7 @@
 
 .sectionTitle {
   font-family: $font-display;
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: $color-gold-dim;
