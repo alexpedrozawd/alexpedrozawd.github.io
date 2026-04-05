@@ -9,8 +9,8 @@
 
 .filters {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
   gap: $space-xs;
   padding: $space-sm $space-lg;
   border-bottom: 1px solid rgba(92, 74, 30, 0.3);
@@ -19,22 +19,13 @@
   z-index: 5;
   background: rgba(10, 9, 20, 0.97);
   backdrop-filter: blur(4px);
-
-  @media (max-width: 520px) {
-    flex-direction: column;
-    align-items: center;
-    gap: $space-xs;
-  }
 }
 
 .filterButtons {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: $space-xs;
-
-  @media (max-width: 520px) {
-    justify-content: center;
-  }
 }
 
 .filterLabel {
