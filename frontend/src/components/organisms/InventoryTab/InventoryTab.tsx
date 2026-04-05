@@ -47,7 +47,7 @@ export function InventoryTab() {
       {/* Grid + Detail row */}
       <div className={styles.row}>
         <div className={styles.grid}>
-          <h3 className={styles.gridTitle}>Inventário de Projetos - Selecione um item para ver detalhes</h3>
+          <h3 className={styles.gridTitle}>Inventário de Projetos</h3>
           <div className={styles.slots}>
             {PROJECTS.map((project) => (
               <ProjectSlot
