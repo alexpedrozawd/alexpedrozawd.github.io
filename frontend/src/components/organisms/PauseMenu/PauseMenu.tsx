@@ -48,7 +48,7 @@ export function PauseMenu() {
         {/* ─── Footer ─── */}
         <footer className={styles.footer}>
           <span>Alexandre Pedroza · Desenvolvedor Fullstack</span>
-          <span>João Pessoa — PB</span>
+          <span>Garanhuns — PE</span>
         </footer>
       </div>
     </div>
