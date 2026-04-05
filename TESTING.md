@@ -99,11 +99,11 @@ npm run test:watch
 |-------|-----------|
 | renders developer name | "Alexandre Pedroza" visível |
 | renders level 99 badge | Badge LVL 99 presente |
-| renders all skill bars | 5 skills renderizadas (Bootstrap, React, TypeScript, Python, FastAPI) com valor X/99 |
+| renders all skill bars | 10 skills em 2 colunas (HTML, CSS, Bootstrap, React, TypeScript / Python, FastAPI, Pytest, Pylance, SQL) — todas 99/99 |
 | renders avatar image | `<img>` com alt "Alexandre Pedroza" |
 | renders developer role | "Desenvolvedor Fullstack" visível |
 | renders cv buttons | Botões "Curriculum LinkedIn" e "Curriculum Vitae" presentes |
-| renders pergaminho section | Seção "Pergaminho do Herói" visível |
+| renders pergaminho section | Seção "Pergaminhos do Herói" visível (sem ícone, sem colon) |
 
 #### `InventoryTab.test.tsx`
 
@@ -111,9 +111,9 @@ npm run test:watch
 |-------|-----------|
 | renders four project slots | 4 slots (Alpha, Beta, Gamma, Delta) |
 | renders project titles | Títulos visíveis |
+| auto-selects first slot on mount | Primeiro projeto já selecionado ao abrir (PROJECTS[0].id dinâmico) |
 | shows detail panel on click | Painel de detalhes aparece ao clicar |
 | deselects slot on second click | `aria-pressed` volta a `false` |
-| renders hint text | "Selecione um item para ver detalhes" visível |
 
 #### `useContactForm.test.ts`
 
@@ -126,7 +126,7 @@ npm run test:watch
 | sets nameError on invalid characters | Números/símbolos no nome geram `nameError` |
 | sets nameError on short name | Nome com < 3 letras gera `nameError` |
 | clears nameError on valid name | Nome válido limpa o erro |
-| calls formspree and sets success | Submissão bem-sucedida via Formspree |
+| calls formspree and sets success | Submissão bem-sucedida retorna "Carta enviada com sucesso! Responderei em breve." |
 | sets error on api failure | Erro de rede capturado |
 
 ---
