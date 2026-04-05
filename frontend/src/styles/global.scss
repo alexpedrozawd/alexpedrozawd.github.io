@@ -35,6 +35,11 @@ body {
     linear-gradient(180deg, #07070f 0%, #0d0a18 50%, #070710 100%);
 }
 
+// Justified paragraphs
+p {
+  text-align: justify;
+}
+
 // Cinzel headings
 h1, h2, h3, h4 {
   font-family: $font-display;
