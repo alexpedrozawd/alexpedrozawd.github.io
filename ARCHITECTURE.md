@@ -204,17 +204,14 @@ frontend/src/
 ### Aba Experiências (QuestLogTab) — Estrutura de layout
 
 ```
-.filters (sticky, flex, flex-wrap)
-  .filterLabel ("QUEST LOG:" — negrito, 1rem)
-  .filterButtons (flex, flex-wrap)
-    button × 3 (Todas / Principais / Secundárias — sem ícones)
+.filters (sticky, flex-column, align-items: center — centralizado em todas as telas)
+  .filterButtons (flex, flex-wrap, justify-content: center)
+    button × 3 (Todas / Principais / Secundárias — sem ícones, sem label)
 .log
   section "📖 Quests Principais"  — ordem: mais recente → mais antigo
   OrnamentDivider ✦
   section "📖 Quests Secundárias" — ordem: mais recente → mais antigo
 ```
-
-> Mobile (≤520px): label e botões empilham em linhas separadas.
 
 ### Aba Contato (SystemTab) — Formulário
 
@@ -256,6 +253,9 @@ function validateName(value: string): string {
 - **CSS Modules** por componente → escopo local, sem colisão de nomes
 - **SCSS** com `@use` (não `@import`) — cada módulo importa explicitamente variáveis e mixins
 - `global.scss` define `p { text-align: justify }` globalmente; exceções sobrescrevem via CSS Modules
+- Tab labels: `font-weight: 700` (negrito) em todas as abas
+- Footer: `justify-content: center` + `gap`, borda superior `2px solid rgba(92,74,30,0.55)`
+- OG image (`frontend/public/og-image.jpg`): atualizada com screenshot mais recente do site
 - Breakpoints principais: `520px` (mobile Sobre/Experiências), `600px` (mobile Projetos), `480px` (TabNavigation labels)
 
 ### Gerenciamento de Estado
