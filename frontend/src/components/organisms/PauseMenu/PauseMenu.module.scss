@@ -111,7 +111,13 @@
   text-transform: uppercase;
   color: $color-gold;
   margin: 0;
+  text-align: center;
   @include parchment-text;
+
+  @media (max-width: 520px) {
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+  }
 }
 
 // ─── Content area ────────────────────────────────────────────

@@ -89,15 +89,17 @@ export function QuestLogTab() {
     <div className={styles.container}>
       <div className={styles.filters}>
         <span className={styles.filterLabel}>Quest Log:</span>
-        {(["all", "main", "side"] as Filter[]).map((f) => (
-          <button
-            key={f}
-            className={`${styles.filterBtn} ${filter === f ? styles.activeFilter : ""}`}
-            onClick={() => setFilter(f)}
-          >
-            {f === "all" ? "Todas" : f === "main" ? "Principais" : "Secundárias"}
-          </button>
-        ))}
+        <div className={styles.filterButtons}>
+          {(["all", "main", "side"] as Filter[]).map((f) => (
+            <button
+              key={f}
+              className={`${styles.filterBtn} ${filter === f ? styles.activeFilter : ""}`}
+              onClick={() => setFilter(f)}
+            >
+              {f === "all" ? "Todas" : f === "main" ? "Principais" : "Secundárias"}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className={styles.log}>
