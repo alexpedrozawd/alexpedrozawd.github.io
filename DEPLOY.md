@@ -83,6 +83,7 @@ Acompanhe o progresso em: https://github.com/alexpedrozawd/alexpedrozawd.github.
 ## Notas técnicas
 
 - O build usa `vite build` diretamente (sem `tsc &&`) para evitar falsos positivos do TypeScript com JSX em arrays de constantes
-- `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true` evita warning de deprecação do Node 20 nas Actions
+- `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true` necessário para `upload-pages-artifact@v3` (ainda sem versão Node 24)
+- Actions atualizadas para Node 24 nativo: `checkout@v6`, `setup-node@v6`, `deploy-pages@v5`
 - O backend FastAPI **não é deployado** — é mantido no repositório para uso futuro em servidor dedicado
 - A branch de deploy é `gh-pages`, gerenciada automaticamente pelo workflow

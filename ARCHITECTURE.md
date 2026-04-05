@@ -117,7 +117,7 @@ Mesma estrutura de um projeto individual. Retorna 404 se não encontrado.
 ```json
 {
   "success": true,
-  "message": "Mensagem enviada com sucesso! Responderei em breve.",
+  "message": "Carta enviada com sucesso! Responderei em breve.",
   "links": {
     "self":     { "href": "/api/v1/contact/",  "method": "POST" },
     "projects": { "href": "/api/v1/projects/", "method": "GET"  }
@@ -134,7 +134,7 @@ frontend/src/
 ├── components/
 │   ├── atoms/
 │   │   ├── icons/
-│   │   │   ├── BackpackIcon.tsx     # SVG medieval backpack (tab Inventário)
+│   │   │   ├── BackpackIcon.tsx     # SVG medieval backpack (tab Projetos)
 │   │   │   └── VikingAxeIcon.tsx    # SVG viking axe (usado internamente)
 │   │   ├── OrnamentDivider/         # Divisor decorativo com ornamento central
 │   │   └── RPGProgressBar/          # Barra de progresso com props `thin` e `valueLabel`
@@ -143,19 +143,19 @@ frontend/src/
 │   │   ├── QuestEntry/              # Entrada de quest no log
 │   │   └── SkillBar/                # Barra fina com valor X/99 (valueLabel prop)
 │   └── organisms/
-│       ├── PauseMenu/               # Container principal (overlay + window 96vh)
-│       ├── TabNavigation/           # Navegação entre 4 abas
-│       ├── StatusTab/               # Avatar, atributos, pergaminho, habilidades, lore
-│       ├── InventoryTab/            # Grid de projetos + painel de detalhes
-│       ├── QuestLogTab/             # Histórico com filtros (Todas/Principais/Secundárias)
-│       └── SystemTab/               # Formulário de contato ("Cartas")
+│       ├── PauseMenu/               # Container principal — header "Histórico do Personagem"
+│       ├── TabNavigation/           # Navegação entre 4 abas (Sobre/Projetos/Experiências/Contato)
+│       ├── StatusTab/               # Avatar, bio, pergaminhos, habilidades em 2 colunas
+│       ├── InventoryTab/            # Grid 40% + painel de detalhes 60%
+│       ├── QuestLogTab/             # Histórico com filtros (label + botões)
+│       └── SystemTab/               # Formulário de contato (aba Contato)
 ├── hooks/
 │   ├── useTabNavigation.ts          # Estado da aba ativa
 │   └── useContactForm.ts            # Estado, validação e envio via Formspree
 ├── styles/
 │   ├── _variables.scss              # Design tokens (cores, tipografia, espaçamento)
 │   ├── _mixins.scss                 # gold-glow, dark-scrollbar, hover-lift, parchment-text
-│   └── global.scss                  # Reset, estilos base, keyframes (fadeInUp, pulse-glow)
+│   └── global.scss                  # Reset, estilos base, p { text-align: justify }, keyframes
 └── types/
     └── index.ts                     # TabId, Skill, Project (icon: ReactNode), Quest, etc.
 ```
@@ -168,37 +168,59 @@ frontend/src/
 | Molecule | Composição de átomos com contexto de domínio | `SkillBar`, `ProjectSlot`, `QuestEntry` |
 | Organism | Seção completa da interface, pode ter estado local | `StatusTab`, `InventoryTab`, `QuestLogTab` |
 
-### Aba Status — Estrutura de layout
+### Aba Sobre (StatusTab) — Estrutura de layout
 
 ```
 .container
-  .heroRow (flex: desktop = lado a lado / mobile ≤520px = coluna)
-    .heroLeft
-      .hero (avatar + identity)
-        avatarWrapper (img + glow animado)
-        identity (name, class, levelBadge)
-    .heroRight
-      .section (Atributos — HP/MP/XP com RPGProgressBar thin)
+  .heroRow (desktop = lado a lado / mobile ≤520px = coluna)
+    .heroLeft  (avatar + identity: nome, classe, LVL 99)
+    .heroRight (bio em itálico com aspas, entre borda dourada)
   OrnamentDivider
-  .pergaminhoSection (Pergaminho do Herói — 2 botões de CV)
+  .pergaminhoSection ("Pergaminhos do Herói" — 2 botões 📜 CV)
   OrnamentDivider ⚙
-  .section (Habilidades — 5 SkillBars com valor X/99)
+  .section (Habilidades — 2 colunas)
+    esquerda: HTML, CSS, Bootstrap, React, TypeScript (todas 99/99)
+    direita:  Python, FastAPI, Pytest, Pylance, SQL (todas 99/99)
   OrnamentDivider
-  .lore (frase sobre mim)
 ```
 
-### Aba Inventário — Estrutura de layout
+> Mobile (≤520px): `.heroLeft` (avatar+nome) em cima, `.heroRight` (bio) abaixo separada por borda superior dourada. Skills colapsam para 1 coluna.
+
+### Aba Projetos (InventoryTab) — Estrutura de layout
 
 ```
-.container (flex-column, min-height: 100%)
+.container (flex-column)
+  .gridTitle ("INVENTÁRIO" — centralizado, font 1.1rem)
   .row (flex)
-    .grid (280px / 180px em mobile)
-      gridTitle
-      .slots (grid: 3 colunas desktop / 2 colunas ≤1024px)
-        ProjectSlot × 4 (Alpha, Beta, Gamma, Delta)
-    .detail (painel de detalhes, flex: 1)
-  .hint (margin-top: auto — fica ao fundo)
+    .grid (flex: 0 0 40%)
+      .slots (grid: 2 colunas padrão / 3 em ≥1200px / 2 em ≤600px)
+        ProjectSlot × N — primeiro item pré-selecionado dinamicamente
+    .detail (flex: 1 — painel de detalhes 60%)
+      texto centralizado (.detailDesc { text-align: center })
 ```
+
+> Mobile (≤600px): empilha verticalmente (grid em cima, detalhe abaixo com borda superior).
+
+### Aba Experiências (QuestLogTab) — Estrutura de layout
+
+```
+.filters (sticky, flex, flex-wrap)
+  .filterLabel ("QUEST LOG:" — negrito, 1rem)
+  .filterButtons (flex, flex-wrap)
+    button × 3 (Todas / Principais / Secundárias — sem ícones)
+.log
+  section "📖 Quests Principais"  — ordem: mais recente → mais antigo
+  OrnamentDivider ✦
+  section "📖 Quests Secundárias" — ordem: mais recente → mais antigo
+```
+
+> Mobile (≤520px): label e botões empilham em linhas separadas.
+
+### Aba Contato (SystemTab) — Formulário
+
+- Label: `Nome do Aventureiro (Nome)`
+- Select com `padding-right: 2.5rem` para afastar seta do dropdown
+- Mensagem de sucesso: `inline-flex` (largura ajustada ao conteúdo) — "Carta enviada com sucesso! Responderei em breve."
 
 ### Tipo `Project.icon` — ReactNode
 
@@ -233,8 +255,8 @@ function validateName(value: string): string {
 
 - **CSS Modules** por componente → escopo local, sem colisão de nomes
 - **SCSS** com `@use` (não `@import`) — cada módulo importa explicitamente variáveis e mixins
-- `additionalData` no Vite injeta `@use` globalmente apenas para `global.scss`
-- Breakpoints principais: `520px` (mobile Status), `1024px` (grid Inventário), `480px` (TabNavigation labels)
+- `global.scss` define `p { text-align: justify }` globalmente; exceções sobrescrevem via CSS Modules
+- Breakpoints principais: `520px` (mobile Sobre/Experiências), `600px` (mobile Projetos), `480px` (TabNavigation labels)
 
 ### Gerenciamento de Estado
 
@@ -242,7 +264,7 @@ function validateName(value: string): string {
 |--------|-------------|
 | Aba ativa | `useTabNavigation` (hook, elevado ao `App`) |
 | Form de contato + erros | `useContactForm` (hook, estado local) |
-| Projeto selecionado | `InventoryTab` (estado local do componente) |
+| Projeto selecionado | `InventoryTab` — inicializa com `PROJECTS[0].id` (dinâmico) |
 | Dados de projetos/quests/skills | Constantes em cada organism (sem API no frontend) |
 
 ---
@@ -276,11 +298,13 @@ A imagem `frontend/public/og-image.jpg` é um screenshot do site e é servida em
 
 ```yaml
 # .github/workflows/deploy.yml (resumo)
+- actions/checkout@v6       # Node 24 nativo
+- actions/setup-node@v6     # Node 24 nativo
 - node-version: 24
-- env: FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+- env: FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true  # necessário para upload-pages-artifact@v3
 - run: npm ci && vite build   # (não tsc && vite build — evita false positives)
 - VITE_FORMSPREE_URL injetado via GitHub Secret
-- Deploy: actions/deploy-pages
+- actions/deploy-pages@v5   # Node 24 nativo
 ```
 
 O build de produção **não inclui o backend** — apenas os arquivos estáticos do Vite são deployados.

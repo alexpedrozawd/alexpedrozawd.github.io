@@ -1,7 +1,7 @@
 # ⚔ Alexandre Pedroza — Portfolio RPG
 
-> Portfólio pessoal com temática de **Menu de Pausa de RPG** (Dark Fantasy / Witcher 3).  
-> Interface de jogo medieval sobre um stack moderno: **React + FastAPI**.
+> Portfólio pessoal com temática de **RPG Dark Fantasy** (inspirado no Witcher 3).  
+> Interface medieval interativa sobre um stack moderno: **React + FastAPI**.
 
 **Site em produção:** https://alexpedrozawd.github.io/
 
@@ -24,10 +24,12 @@
 
 | Aba | Ícone | Conteúdo |
 |-----|-------|----------|
-| **Status** | ⚔️ | Avatar, atributos (HP/MP/XP), pergaminho do herói (CVs), habilidades, lore |
-| **Inventário** | 🎒 | 4 cards de projetos (Alpha, Beta, Gamma, Delta) com painel de detalhes |
-| **Quest Log** | 📜 | Histórico profissional e acadêmico dividido em quests principais e secundárias |
-| **Cartas** | 🪶 | Formulário de contato com validação em tempo real |
+| **Sobre** | ⚔️ | Avatar, bio, pergaminhos do herói (CVs), habilidades em 2 colunas |
+| **Projetos** | 🎒 | Grid de cards de projetos (40%) + painel de detalhes (60%) |
+| **Experiências** | 📜 | Histórico profissional e acadêmico (ordem cronológica inversa) |
+| **Contato** | 🪶 | Formulário de contato com validação em tempo real via Formspree |
+
+O header da janela exibe: **HISTÓRICO DO PERSONAGEM**
 
 ---
 
