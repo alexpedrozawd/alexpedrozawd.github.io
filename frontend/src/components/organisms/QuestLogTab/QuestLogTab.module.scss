@@ -31,6 +31,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: $space-xs;
+
+  @media (max-width: 520px) {
+    justify-content: center;
+  }
 }
 
 .filterLabel {
