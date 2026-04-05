@@ -27,7 +27,7 @@ export function PauseMenu() {
         {/* ─── Header ─── */}
         <header className={styles.header}>
           <div className={styles.headerOrn} aria-hidden="true">✦</div>
-          <h1 className={styles.title}>Menu de Pausa</h1>
+          <h1 className={styles.title}>Histórico do Personagem</h1>
           <div className={styles.headerOrn} aria-hidden="true">✦</div>
         </header>
 

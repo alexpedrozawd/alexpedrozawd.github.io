@@ -57,9 +57,9 @@ export function StatusTab() {
 
         <div className={styles.heroRight}>
           <p className={styles.heroLore}>
-            Aventureiro digital de João Pessoa – PB. Transicionei de Suporte &amp; Infra para o
+            "Aventureiro digital de João Pessoa – PB. Transicionei de Suporte &amp; Infra para o
             desenvolvimento fullstack, forjando interfaces medievais e APIs rápidas como
-            raios arcanos. Sempre buscando novos feitiços na stack moderna.
+            raios arcanos. Sempre buscando novos feitiços na stack moderna."
           </p>
         </div>
       </div>

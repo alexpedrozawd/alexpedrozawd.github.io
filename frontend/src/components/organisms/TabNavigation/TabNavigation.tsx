@@ -4,7 +4,7 @@ import { BackpackIcon } from "../../atoms/icons/BackpackIcon";
 import styles from "./TabNavigation.module.scss";
 
 const TABS: { id: TabId; label: string; icon: ReactNode }[] = [
-  { id: "status",    label: "Personagem", icon: "⚔️" },
+  { id: "status",    label: "Sobre",      icon: "⚔️" },
   { id: "inventory", label: "Projetos",   icon: "🎒" },
   { id: "questlog",  label: "Experiências", icon: "📜" },
   { id: "system",    label: "Contato",     icon: "🪶" },
