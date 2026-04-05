@@ -88,7 +88,6 @@ export function QuestLogTab() {
   return (
     <div className={styles.container}>
       <div className={styles.filters}>
-        <span className={styles.filterLabel}>Quests:</span>
         <div className={styles.filterButtons}>
           {(["all", "main", "side"] as Filter[]).map((f) => (
             <button
