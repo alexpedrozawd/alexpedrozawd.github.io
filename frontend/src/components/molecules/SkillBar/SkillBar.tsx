@@ -7,12 +7,16 @@ interface SkillBarProps {
 }
 
 const SKILL_COLORS: Record<string, string> = {
+  html:       "linear-gradient(90deg, #8b2500, #e34c26)",
+  css:        "linear-gradient(90deg, #1a3a8b, #264de4)",
   bootstrap:  "linear-gradient(90deg, #4a1a8a, #7952b3)",
   react:      "linear-gradient(90deg, #0e7a9e, #61dafb)",
   typescript: "linear-gradient(90deg, #1a4080, #3178c6)",
   python:     "linear-gradient(90deg, #1a3a60, #3572a5)",
   fastapi:    "linear-gradient(90deg, #005544, #009688)",
-  claudecode: "linear-gradient(90deg, #92400e, #d97706)",
+  pytest:     "linear-gradient(90deg, #0e5e3a, #00a651)",
+  pylance:    "linear-gradient(90deg, #1a2a6e, #4b8bbe)",
+  sql:        "linear-gradient(90deg, #5c3a1a, #f29111)",
 };
 
 export function SkillBar({ skill }: SkillBarProps) {

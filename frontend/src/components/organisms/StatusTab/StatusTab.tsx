@@ -1,5 +1,4 @@
 import { OrnamentDivider } from "../../atoms/OrnamentDivider/OrnamentDivider";
-import { RPGProgressBar } from "../../atoms/RPGProgressBar/RPGProgressBar";
 import { SkillBar } from "../../molecules/SkillBar/SkillBar";
 import type { Skill } from "../../../types";
 import styles from "./StatusTab.module.scss";
@@ -10,24 +9,26 @@ const CV_URL = "https://drive.google.com/file/d/1erqBgJDkqoHGzEb6wDiFB6n-DEmIHOt
 const AVATAR_URL =
   "https://media.licdn.com/dms/image/v2/D4E03AQHT58_HCwY50w/profile-displayphoto-scale_400_400/B4EZzn.QPxHYAg-/0/1773418386666?e=1776902400&v=beta&t=jhHxaosj8e616AhfBqzFo0XWBPhSvQbnNBg_AabahFs";
 
-const SKILLS: Skill[] = [
-  { name: "Bootstrap",  value: 90 },
-  { name: "React",      value: 82 },
-  { name: "TypeScript", value: 75 },
-  { name: "Python",     value: 80 },
-  { name: "FastAPI",    value: 78 },
+const LEFT_SKILLS: Skill[] = [
+  { name: "HTML",       value: 100 },
+  { name: "CSS",        value: 100 },
+  { name: "Bootstrap",  value: 100 },
+  { name: "React",      value: 100 },
+  { name: "TypeScript", value: 100 },
 ];
 
-const ATTRIBUTES = [
-  { label: "HP", value: 99, max: 99, color: "#c0392b" },
-  { label: "MP", value: 87, max: 99, color: "#3178c6" },
-  { label: "XP", value: 99, max: 99, color: "#c9aa71" },
+const RIGHT_SKILLS: Skill[] = [
+  { name: "Python",  value: 100 },
+  { name: "FastAPI", value: 100 },
+  { name: "Pytest",  value: 100 },
+  { name: "Pylance", value: 100 },
+  { name: "SQL",     value: 100 },
 ];
 
 export function StatusTab() {
   return (
     <div className={styles.container}>
-      {/* — Hero Row: avatar/identity (left) + attributes (right) — */}
+      {/* — Hero Row: avatar (left) + lore text (right) — */}
       <div className={styles.heroRow}>
         <div className={styles.heroLeft}>
           <div className={styles.hero}>
@@ -55,33 +56,19 @@ export function StatusTab() {
         </div>
 
         <div className={styles.heroRight}>
-          {/* — Attributes — */}
-          <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>Atributos</h3>
-            <div className={styles.attributes}>
-              {ATTRIBUTES.map((attr) => (
-                <div key={attr.label} className={styles.attr}>
-                  <span className={styles.attrLabel}>{attr.label}</span>
-                  <RPGProgressBar
-                    value={(attr.value / attr.max) * 100}
-                    color={attr.color}
-                    thin
-                  />
-                  <span className={styles.attrValue}>
-                    {attr.value}/{attr.max}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <p className={styles.heroLore}>
+            Aventureiro digital de João Pessoa – PB. Transicionei de Suporte &amp; Infra para o
+            desenvolvimento fullstack, forjando interfaces medievais e APIs rápidas como
+            raios arcanos. Sempre buscando novos feitiços na stack moderna.
+          </p>
         </div>
       </div>
 
       <OrnamentDivider />
 
-      {/* — Pergaminho do Herói — */}
+      {/* — Pergaminhos do Herói — */}
       <div className={styles.pergaminhoSection}>
-        <h3 className={styles.sectionTitle}>📄 Pergaminho do Herói</h3>
+        <h3 className={styles.sectionTitle}>Pergaminhos do Herói:</h3>
         <div className={styles.cvButtons}>
           <a
             href={LINKEDIN_URL}
@@ -109,23 +96,21 @@ export function StatusTab() {
       {/* — Skills — */}
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>Habilidades</h3>
-        <div className={styles.skills}>
-          {SKILLS.map((skill) => (
-            <SkillBar key={skill.name} skill={skill} />
-          ))}
+        <div className={styles.skillsGrid}>
+          <div className={styles.skillsCol}>
+            {LEFT_SKILLS.map((skill) => (
+              <SkillBar key={skill.name} skill={skill} />
+            ))}
+          </div>
+          <div className={styles.skillsCol}>
+            {RIGHT_SKILLS.map((skill) => (
+              <SkillBar key={skill.name} skill={skill} />
+            ))}
+          </div>
         </div>
       </div>
 
       <OrnamentDivider />
-
-      {/* — Lore — */}
-      <div className={styles.lore}>
-        <p>
-          Aventureiro digital de João Pessoa – PB. Transicionei de Suporte &amp; Infra para o
-          desenvolvimento fullstack, forjando interfaces medievais e APIs rápidas como
-          raios arcanos. Sempre buscando novos feitiços na stack moderna.
-        </p>
-      </div>
     </div>
   );
 }

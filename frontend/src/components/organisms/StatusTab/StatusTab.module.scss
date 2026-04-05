@@ -9,7 +9,7 @@
 .heroRow {
   display: flex;
   gap: $space-xl;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: $space-sm;
 }
 
@@ -20,6 +20,9 @@
 .heroRight {
   flex: 1;
   min-width: 0;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
 }
 
 .hero {
@@ -102,6 +105,19 @@
   color: $color-gold;
 }
 
+.heroLore {
+  font-family: $font-body;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: $color-muted;
+  line-height: 1.7;
+  padding: $space-sm $space-md;
+  border-left: 2px solid $color-gold-dark;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 $radius-sm $radius-sm 0;
+  margin: 0;
+}
+
 .section {
   margin-bottom: $space-sm;
 }
@@ -114,35 +130,6 @@
   letter-spacing: 0.14em;
   margin-bottom: 4px;
   text-align: center;
-}
-
-.attributes {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.attr {
-  display: flex;
-  align-items: center;
-  gap: $space-sm;
-}
-
-.attrLabel {
-  font-family: $font-display;
-  font-size: 1rem;
-  letter-spacing: 0.08em;
-  color: $color-gold-dim;
-  width: 40px;
-  flex-shrink: 0;
-}
-
-.attrValue {
-  font-family: $font-display;
-  font-size: 0.95rem;
-  color: $color-muted;
-  min-width: 56px;
-  text-align: right;
 }
 
 .pergaminhoSection {
@@ -180,7 +167,13 @@
   }
 }
 
-.skills {
+.skillsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-md;
+}
+
+.skillsCol {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -188,27 +181,27 @@
 
 @media (max-width: 520px) {
   .heroRow {
-    flex-direction: column;
     gap: $space-md;
   }
 
-  .heroLeft {
-    width: 100%;
+  .avatar {
+    width: 80px;
+    height: 80px;
   }
 
-  .heroRight {
-    width: 100%;
+  .name {
+    font-size: 1.2rem;
   }
-}
 
-.lore {
-  font-family: $font-body;
-  font-size: 1.15rem;
-  font-style: italic;
-  color: $color-muted;
-  line-height: 1.7;
-  padding: 4px $space-md;
-  border-left: 2px solid $color-gold-dark;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 0 $radius-sm $radius-sm 0;
+  .class {
+    font-size: 1.1rem;
+  }
+
+  .heroLore {
+    font-size: 0.95rem;
+  }
+
+  .skillsGrid {
+    grid-template-columns: 1fr;
+  }
 }
