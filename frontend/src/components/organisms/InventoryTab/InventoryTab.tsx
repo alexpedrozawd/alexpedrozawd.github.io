@@ -39,7 +39,7 @@ const PROJECTS: Project[] = [
 ];
 
 export function InventoryTab() {
-  const [selectedId, setSelectedId] = useState<number | null>(1);
+  const [selectedId, setSelectedId] = useState<number | null>(PROJECTS[0]?.id ?? null);
   const selectedProject = PROJECTS.find((p) => p.id === selectedId) ?? null;
 
   return (
