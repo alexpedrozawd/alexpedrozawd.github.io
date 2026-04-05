@@ -134,10 +134,11 @@
 // ─── Footer ──────────────────────────────────────────────────
 .footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: $space-lg;
   align-items: center;
   padding: 6px $space-lg;
-  border-top: 1px solid rgba(92, 74, 30, 0.3);
+  border-top: 2px solid rgba(92, 74, 30, 0.55);
   background: rgba(0, 0, 0, 0.2);
   flex-shrink: 0;
   z-index: 2;
