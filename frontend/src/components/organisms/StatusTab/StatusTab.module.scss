@@ -181,12 +181,32 @@
 
 @media (max-width: 520px) {
   .heroRow {
-    gap: $space-md;
+    flex-direction: column;
+    gap: $space-sm;
+    align-items: stretch;
+  }
+
+  .heroLeft {
+    width: 100%;
+  }
+
+  .heroRight {
+    width: 100%;
+    align-self: auto;
+    border-left: none;
+    border-top: 2px solid $color-gold-dark;
+    padding-top: $space-sm;
+  }
+
+  .heroLore {
+    font-size: 0.95rem;
+    border-left: none;
+    border-radius: $radius-sm;
   }
 
   .avatar {
-    width: 80px;
-    height: 80px;
+    width: 75px;
+    height: 75px;
   }
 
   .name {
@@ -195,10 +215,6 @@
 
   .class {
     font-size: 1.1rem;
-  }
-
-  .heroLore {
-    font-size: 0.95rem;
   }
 
   .skillsGrid {
