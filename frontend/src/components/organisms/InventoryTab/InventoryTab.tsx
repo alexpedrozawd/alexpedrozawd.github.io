@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ProjectSlot } from "../../molecules/ProjectSlot/ProjectSlot";
-import { RPGProgressBar } from "../../atoms/RPGProgressBar/RPGProgressBar";
 import type { Project } from "../../../types";
 import styles from "./InventoryTab.module.scss";
 
@@ -40,7 +39,7 @@ const PROJECTS: Project[] = [
 ];
 
 export function InventoryTab() {
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [selectedId, setSelectedId] = useState<number | null>(1);
   const selectedProject = PROJECTS.find((p) => p.id === selectedId) ?? null;
 
   return (
@@ -48,7 +47,7 @@ export function InventoryTab() {
       {/* Grid + Detail row */}
       <div className={styles.row}>
         <div className={styles.grid}>
-          <h3 className={styles.gridTitle}>Inventário de Projetos</h3>
+          <h3 className={styles.gridTitle}>Inventário de Projetos - Selecione um item para ver detalhes</h3>
           <div className={styles.slots}>
             {PROJECTS.map((project) => (
               <ProjectSlot
@@ -76,8 +75,7 @@ export function InventoryTab() {
         </div>
       </div>
 
-      {/* Hint — full width, pinned toward footer */}
-      <p className={styles.hint}>Selecione um item para ver detalhes</p>
+
     </div>
   );
 }

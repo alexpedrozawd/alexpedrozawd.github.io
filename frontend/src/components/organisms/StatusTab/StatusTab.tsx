@@ -68,7 +68,7 @@ export function StatusTab() {
 
       {/* — Pergaminhos do Herói — */}
       <div className={styles.pergaminhoSection}>
-        <h3 className={styles.sectionTitle}>Pergaminhos do Herói:</h3>
+        <h3 className={styles.sectionTitle}>Pergaminhos do Herói</h3>
         <div className={styles.cvButtons}>
           <a
             href={LINKEDIN_URL}

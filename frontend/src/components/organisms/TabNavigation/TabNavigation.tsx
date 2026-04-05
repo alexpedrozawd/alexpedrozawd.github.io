@@ -5,7 +5,7 @@ import styles from "./TabNavigation.module.scss";
 
 const TABS: { id: TabId; label: string; icon: ReactNode }[] = [
   { id: "status",    label: "Personagem", icon: "⚔️" },
-  { id: "inventory", label: "Inventário", icon: "🎒" },
+  { id: "inventory", label: "Projetos",   icon: "🎒" },
   { id: "questlog",  label: "Quest Log",  icon: "📜" },
   { id: "system",    label: "Cartas",     icon: "🪶" },
 ];
