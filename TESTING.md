@@ -99,7 +99,7 @@ npm run test:watch
 |-------|-----------|
 | renders developer name | "Alexandre Pedroza" visível |
 | renders level 99 badge | Badge LVL 99 presente |
-| renders all skill bars | 10 skills em 2 colunas (Bootstrap, React, TypeScript, JavaScript, REST / Python, FastAPI, Java, Spring, SQL) — todas 99/99 |
+| renders all skill bars | 10 skills em 2 colunas (Bootstrap, React, TypeScript, JavaScript, REST / Python, FastAPI, Java, Spring, PostgreSQL) — cada uma com ícone devicon |
 | renders avatar image | `<img>` com alt "Alexandre Pedroza" |
 | renders developer role | "Desenvolvedor Fullstack" visível |
 | renders cv buttons | Botões "Curriculum LinkedIn" e "Curriculum Vitae" presentes |

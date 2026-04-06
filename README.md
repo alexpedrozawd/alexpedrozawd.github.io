@@ -130,8 +130,8 @@ portfolio/
 └── frontend/
     └── src/
         ├── components/
-        │   ├── atoms/           # RPGProgressBar (prop valueLabel), OrnamentDivider, icons/
-        │   ├── molecules/       # SkillBar, ProjectSlot, QuestEntry
+        │   ├── atoms/           # RPGProgressBar, OrnamentDivider, icons/
+        │   ├── molecules/       # SkillBar (ícone devicon à direita), ProjectSlot, QuestEntry
         │   └── organisms/       # PauseMenu, StatusTab, InventoryTab,
         │                        # QuestLogTab, SystemTab, TabNavigation
         ├── hooks/               # useTabNavigation, useContactForm

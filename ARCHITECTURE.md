@@ -137,11 +137,11 @@ frontend/src/
 │   │   │   ├── BackpackIcon.tsx     # SVG medieval backpack (tab Projetos)
 │   │   │   └── VikingAxeIcon.tsx    # SVG viking axe (usado internamente)
 │   │   ├── OrnamentDivider/         # Divisor decorativo com ornamento central
-│   │   └── RPGProgressBar/          # Barra de progresso com props `thin` e `valueLabel`
+│   │   └── RPGProgressBar/          # Barra de progresso com props `thin` e `color`
 │   ├── molecules/
 │   │   ├── ProjectSlot/             # Card clicável de projeto no inventário
 │   │   ├── QuestEntry/              # Entrada de quest no log
-│   │   └── SkillBar/                # Barra fina com valor X/99 (valueLabel prop)
+│   │   └── SkillBar/                # Barra fina com ícone da tecnologia à direita (devicons CDN)
 │   └── organisms/
 │       ├── PauseMenu/               # Container principal — header "Histórico do Personagem"
 │       ├── TabNavigation/           # Navegação entre 4 abas (Sobre/Projetos/Experiências/Contato)
@@ -173,18 +173,26 @@ frontend/src/
 ```
 .container
   .heroRow (desktop = lado a lado / mobile ≤520px = coluna)
-    .heroLeft  (avatar + identity: nome, classe, LVL 99)
+    .heroLeft  (avatar com aura chakra dourada animada + identity: nome, classe, LVL 99)
     .heroRight (bio em itálico com aspas, entre borda dourada)
   OrnamentDivider
   .pergaminhoSection ("Pergaminhos do Herói" — 2 botões 📜 CV)
   OrnamentDivider ⚙
-  .section (Habilidades — 2 colunas)
-    esquerda: Bootstrap, React, TypeScript, JavaScript, REST (todas 99/99)
-    direita:  Python, FastAPI, Java, Spring, SQL (todas 99/99)
+  .section (Habilidades — 2 colunas, cada habilidade com ícone devicon à direita)
+    esquerda: Bootstrap, React, TypeScript, JavaScript, REST (ícone: engrenagem Bootstrap Icons)
+    direita:  Python, FastAPI, Java, Spring, PostgreSQL
   OrnamentDivider
 ```
 
 > Mobile (≤520px): `.heroLeft` (avatar+nome) em cima, `.heroRight` (bio) abaixo separada por borda superior dourada. Skills colapsam para 1 coluna.
+
+#### Avatar — Aura Chakra
+
+O avatar circular tem dois layers de animação no `.avatarWrapper`:
+- `::before` — gradiente cônico com 4 "chamas" douradas girando (5s/volta, `blur(5px)`), fica atrás da foto
+- `.avatarGlow` — anel radial transparente no centro (foto intacta) e dourado na borda, pulsa entre 40–90% de opacidade (`chakra-flicker 2.5s alternate`)
+
+Extensão máxima: 14px além da borda da foto no desktop, 9px no mobile.
 
 ### Aba Projetos (InventoryTab) — Estrutura de layout
 
@@ -258,6 +266,15 @@ function validateName(value: string): string {
 - OG image (`frontend/public/og-image.jpg`): atualizada com screenshot mais recente do site
 - Bio: "Aventureiro digital nascido em João Pessoa – PB, e residindo atualmente em Garanhuns - PE..."
 - Breakpoints principais: `520px` (mobile Sobre/Experiências), `600px` (mobile Projetos), `480px` (TabNavigation labels)
+
+#### SkillBar — Ícones de tecnologia
+
+Cada `SkillBar` exibe a barra de progresso à esquerda e um ícone da tecnologia à direita:
+
+- Ícones coloridos: devicons CDN (`cdn.jsdelivr.net/gh/devicons/devicon@latest/...`) — Bootstrap, React, TypeScript, JavaScript, Python, FastAPI, Java, Spring, PostgreSQL
+- Ícone monocromático: Bootstrap Icons gear-fill (`cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/...`) — REST
+- `MONO_ICONS: Set<string>` controla quais ícones precisam do filtro CSS `invert + sepia + hue-rotate` para virar dourado no tema escuro
+- Tecnologias sem ícone recebem `<span className={styles.iconPlaceholder} />` para manter alinhamento
 
 ### Gerenciamento de Estado
 
