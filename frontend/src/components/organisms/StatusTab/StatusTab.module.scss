@@ -177,113 +177,74 @@
   display: flex;
   position: relative;
   border-radius: 16px 8px 8px 16px;
-  border: 2px solid #2e1805;
+  border: 2px solid #1e0e02;
   overflow: hidden;
   min-height: 320px;
   box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.75),
-    0 3px 10px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(201, 170, 113, 0.12),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-  background: #1c0e04;
+    0 18px 55px rgba(0, 0, 0, 0.85),
+    0 6px 18px rgba(0, 0, 0, 0.55),
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(201, 170, 113, 0.1);
+  background: #0f0600;
 
-  @media (max-width: 768px) {
-    min-height: 280px;
-  }
+  @media (max-width: 768px) { min-height: 280px; }
+  @media (max-width: 520px) { min-height: 240px; }
+}
 
-  @media (max-width: 520px) {
-    min-height: 240px;
-  }
+// Shared page base — used by both left & right
+%page-base {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
 }
 
 .grimoirePageLeft {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: $space-md $space-sm $space-md $space-lg;
-  position: relative;
-  background: linear-gradient(
-    to right,
-    #f7ecca 0%,
-    #f0e2b0 55%,
-    #dccf90 100%
-  );
-
-  // Aging texture overlay
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(ellipse at 10% 10%, rgba(160, 120, 40, 0.14) 0%, transparent 55%),
-      radial-gradient(ellipse at 90% 90%, rgba(120, 90, 20, 0.10) 0%, transparent 45%),
-      radial-gradient(ellipse at 50% 50%, rgba(200, 170, 80, 0.04) 0%, transparent 70%);
-  }
+  @extend %page-base;
+  padding: $space-lg $space-sm $space-lg $space-xl;
+  background:
+    // Shadow curving into the spine (right edge)
+    linear-gradient(to right, transparent 65%, rgba(0,0,0,0.28) 100%),
+    // Corner aging spots
+    radial-gradient(ellipse at 6%  8%,  rgba(140,100,20,0.22) 0%, transparent 35%),
+    radial-gradient(ellipse at 88% 92%, rgba(110, 80,15,0.18) 0%, transparent 30%),
+    radial-gradient(ellipse at 50% 50%, rgba(180,140,50,0.06) 0%, transparent 60%),
+    // Parchment base — warm, aged
+    linear-gradient(150deg, #f8edca 0%, #edd99a 35%, #e5ce88 65%, #d6bc6e 100%);
 }
 
 .grimoirePageRight {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: $space-md $space-lg $space-md $space-sm;
-  position: relative;
-  background: linear-gradient(
-    to left,
-    #f7ecca 0%,
-    #f0e2b0 55%,
-    #dccf90 100%
-  );
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(ellipse at 90% 10%, rgba(160, 120, 40, 0.14) 0%, transparent 55%),
-      radial-gradient(ellipse at 10% 90%, rgba(120, 90, 20, 0.10) 0%, transparent 45%),
-      radial-gradient(ellipse at 50% 50%, rgba(200, 170, 80, 0.04) 0%, transparent 70%);
-  }
+  @extend %page-base;
+  padding: $space-lg $space-xl $space-lg $space-sm;
+  background:
+    // Shadow curving into the spine (left edge)
+    linear-gradient(to left, transparent 65%, rgba(0,0,0,0.28) 100%),
+    // Corner aging spots
+    radial-gradient(ellipse at 94% 8%,  rgba(140,100,20,0.22) 0%, transparent 35%),
+    radial-gradient(ellipse at 12% 92%, rgba(110, 80,15,0.18) 0%, transparent 30%),
+    radial-gradient(ellipse at 50% 50%, rgba(180,140,50,0.06) 0%, transparent 60%),
+    // Parchment base
+    linear-gradient(210deg, #f8edca 0%, #edd99a 35%, #e5ce88 65%, #d6bc6e 100%);
 }
 
+// Gutter / binding crease
 .grimoireSpine {
-  width: 20px;
+  width: 10px;
   flex-shrink: 0;
   position: relative;
   background: linear-gradient(
     to right,
-    #140800 0%,
-    #3a1c08 20%,
-    #2a1205 50%,
-    #3a1c08 80%,
-    #140800 100%
+    rgba(0,0,0,0.55) 0%,
+    #080300 35%,
+    #100600 50%,
+    #080300 65%,
+    rgba(0,0,0,0.55) 100%
   );
   box-shadow:
-    inset 4px 0 10px rgba(0, 0, 0, 0.6),
-    inset -4px 0 10px rgba(0, 0, 0, 0.6);
-
-  // Stitching line down the centre
-  &::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(201, 170, 113, 0.45) 0px,
-      rgba(201, 170, 113, 0.45) 5px,
-      transparent 5px,
-      transparent 10px
-    );
-  }
+    inset 3px  0 14px rgba(0,0,0,0.9),
+    inset -3px 0 14px rgba(0,0,0,0.9);
 }
 
 .grimoireRow {
@@ -292,13 +253,11 @@
   justify-content: flex-start;
   gap: 6px;
   padding: 5px 0;
-  border-bottom: 1px solid rgba(100, 75, 20, 0.22);
+  border-bottom: 1px solid rgba(100, 75, 20, 0.25);
   position: relative;
   z-index: 1;
 
-  &:last-child {
-    border-bottom: none;
-  }
+  &:last-child { border-bottom: none; }
 }
 
 .grimoireSkillName {
@@ -315,7 +274,9 @@
   height: 20px;
   flex-shrink: 0;
   object-fit: contain;
-  filter: brightness(0);
+  // Grayscale so white letters remain white → multiply makes them pick up parchment
+  filter: grayscale(1) contrast(1.4);
+  mix-blend-mode: multiply;
 }
 
 // ─── Mobile ──────────────────────────────────────────────────
@@ -360,7 +321,7 @@
   }
 
   .grimoireSpine {
-    width: 12px;
+    width: 7px;
   }
 
   .grimoireSkillName {
@@ -368,15 +329,15 @@
   }
 
   .grimoireIcon {
-    width: 18px;
-    height: 18px;
+    width: 17px;
+    height: 17px;
   }
 
   .grimoirePageLeft {
-    padding: $space-sm $space-xs $space-sm $space-sm;
+    padding: $space-sm $space-xs $space-sm $space-md;
   }
 
   .grimoirePageRight {
-    padding: $space-sm $space-sm $space-sm $space-xs;
+    padding: $space-sm $space-md $space-sm $space-xs;
   }
 }
