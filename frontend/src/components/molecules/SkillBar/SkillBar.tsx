@@ -21,21 +21,37 @@ const SKILL_COLORS: Record<string, string> = {
   sql:        "linear-gradient(90deg, #5c3a1a, #f29111)",
 };
 
+const SKILL_ICONS: Record<string, string> = {
+  bootstrap:  "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
+  react:      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+  typescript: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+  javascript: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+  python:     "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+  fastapi:    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+  java:       "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+  spring:     "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg",
+  sql:        "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+};
+
 export function SkillBar({ skill }: SkillBarProps) {
   const colorKey = skill.name.toLowerCase().replace(/\s+/g, "");
   const color = skill.color ?? SKILL_COLORS[colorKey];
-
-  const displayValue = Math.round(skill.value * 99 / 100);
+  const icon  = SKILL_ICONS[colorKey];
 
   return (
     <div className={styles.container}>
-      <RPGProgressBar
-        value={skill.value}
-        color={color}
-        label={skill.name}
-        valueLabel={`${displayValue}/99`}
-        thin
-      />
+      <div className={styles.barWrapper}>
+        <RPGProgressBar
+          value={skill.value}
+          color={color}
+          label={skill.name}
+          thin
+        />
+      </div>
+      {icon
+        ? <img src={icon} alt={skill.name} className={styles.icon} loading="lazy" />
+        : <span className={styles.iconPlaceholder} />
+      }
     </div>
   );
 }
