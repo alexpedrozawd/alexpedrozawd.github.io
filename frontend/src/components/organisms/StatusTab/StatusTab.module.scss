@@ -34,6 +34,36 @@
 .avatarWrapper {
   position: relative;
   flex-shrink: 0;
+
+  // rotating chakra energy wisps — behind the photo
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      transparent        0%,
+      rgba(201,170,113,0.55)  5%,
+      rgba(255,210,130,0.28)  9%,
+      transparent       16%,
+      rgba(201,170,113,0.38) 24%,
+      transparent       31%,
+      rgba(201,170,113,0.65) 41%,
+      rgba(255,210,130,0.32) 45%,
+      transparent       52%,
+      rgba(201,170,113,0.32) 61%,
+      transparent       68%,
+      rgba(201,170,113,0.48) 78%,
+      rgba(255,210,130,0.22) 82%,
+      transparent       89%,
+      transparent      100%
+    );
+    filter: blur(5px);
+    animation: chakra-spin 5s linear infinite;
+    opacity: 0.8;
+    pointer-events: none;
+  }
 }
 
 .avatar {
@@ -44,16 +74,26 @@
   display: block;
   object-fit: cover;
   filter: sepia(0.15) brightness(0.95);
-  box-shadow: 0 0 0 4px rgba(92, 74, 30, 0.3), $shadow-panel;
+  box-shadow: 0 0 0 3px rgba(92, 74, 30, 0.5), 0 0 10px 2px rgba(201, 170, 113, 0.18), $shadow-panel;
+  position: relative; // renders above ::before
 }
 
 .avatarGlow {
   position: absolute;
-  inset: -4px;
+  inset: -12px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,170,113,0.18) 0%, transparent 70%);
+  // ring transparent at center so photo shows through, gold at the rim
+  background: radial-gradient(
+    circle,
+    transparent            0%,
+    transparent           81%,
+    rgba(201,170,113,0.18) 86%,
+    rgba(201,170,113,0.30) 91%,
+    rgba(201,170,113,0.12) 96%,
+    transparent          100%
+  );
   pointer-events: none;
-  animation: pulse-glow 3s ease-in-out infinite;
+  animation: chakra-flicker 2.5s ease-in-out infinite alternate;
 }
 
 .identity {
@@ -210,6 +250,17 @@
     height: 75px;
   }
 
+  .avatarWrapper {
+    &::before {
+      inset: -9px;
+      filter: blur(4px);
+    }
+  }
+
+  .avatarGlow {
+    inset: -7px;
+  }
+
   .name {
     font-size: 1.2rem;
   }
@@ -221,4 +272,16 @@
   .skillsGrid {
     grid-template-columns: 1fr;
   }
+}
+
+@keyframes chakra-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes chakra-flicker {
+  0%   { opacity: 0.4; transform: scale(0.97); }
+  35%  { opacity: 0.7; }
+  65%  { opacity: 0.55; transform: scale(1.01); }
+  100% { opacity: 0.9; transform: scale(1.03); }
 }
