@@ -3,7 +3,7 @@
 .container {
   display: flex;
   align-items: center;
-  gap: $space-xs;
+  gap: $space-sm;
 
   + .container {
     margin-top: $space-sm;
