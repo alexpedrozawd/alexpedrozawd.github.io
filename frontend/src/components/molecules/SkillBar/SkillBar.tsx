@@ -21,6 +21,8 @@ const SKILL_COLORS: Record<string, string> = {
   sql:        "linear-gradient(90deg, #5c3a1a, #f29111)",
 };
 
+const MONO_ICONS = new Set(["rest"]);
+
 const SKILL_ICONS: Record<string, string> = {
   bootstrap:  "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
   react:      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
@@ -31,6 +33,7 @@ const SKILL_ICONS: Record<string, string> = {
   java:       "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
   spring:     "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg",
   sql:        "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+  rest:       "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/gear-fill.svg",
 };
 
 export function SkillBar({ skill }: SkillBarProps) {
@@ -49,7 +52,7 @@ export function SkillBar({ skill }: SkillBarProps) {
         />
       </div>
       {icon
-        ? <img src={icon} alt={skill.name} className={styles.icon} loading="lazy" />
+        ? <img src={icon} alt={skill.name} className={MONO_ICONS.has(colorKey) ? styles.iconMono : styles.icon} loading="lazy" />
         : <span className={styles.iconPlaceholder} />
       }
     </div>
