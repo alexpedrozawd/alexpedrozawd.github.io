@@ -36,24 +36,26 @@
   flex-shrink: 0;
 }
 
-.avatar {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 2px solid $color-gold-dim;
+.shieldSvg {
   display: block;
-  object-fit: cover;
-  filter: sepia(0.15) brightness(0.95);
-  box-shadow: 0 0 0 4px rgba(92, 74, 30, 0.3), $shadow-panel;
+  width: 130px;
+  height: 148px;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.7));
 }
 
-.avatarGlow {
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,170,113,0.18) 0%, transparent 70%);
-  pointer-events: none;
-  animation: pulse-glow 3s ease-in-out infinite;
+.shieldGlowPath {
+  animation: shield-glow 3s ease-in-out infinite;
+}
+
+@keyframes shield-glow {
+  0%, 100% {
+    opacity: 0.35;
+    filter: drop-shadow(0 0 3px rgba(201, 170, 113, 0.3));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(201, 170, 113, 0.75));
+  }
 }
 
 .identity {
@@ -205,9 +207,9 @@
     border-radius: $radius-sm;
   }
 
-  .avatar {
+  .shieldSvg {
     width: 75px;
-    height: 75px;
+    height: 85px;
   }
 
   .name {
