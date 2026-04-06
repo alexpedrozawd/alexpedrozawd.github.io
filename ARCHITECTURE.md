@@ -179,8 +179,8 @@ frontend/src/
   .pergaminhoSection ("Pergaminhos do Herói" — 2 botões 📜 CV)
   OrnamentDivider ⚙
   .section (Habilidades — 2 colunas)
-    esquerda: HTML, CSS, Bootstrap, React, TypeScript (todas 99/99)
-    direita:  Python, FastAPI, Pytest, Pylance, SQL (todas 99/99)
+    esquerda: Bootstrap, React, TypeScript, JavaScript, REST (todas 99/99)
+    direita:  Python, FastAPI, Java, Spring, SQL (todas 99/99)
   OrnamentDivider
 ```
 
@@ -256,6 +256,7 @@ function validateName(value: string): string {
 - Tab labels: `font-weight: 700` (negrito) em todas as abas
 - Footer: `justify-content: center` + `gap`, borda superior `2px solid rgba(92,74,30,0.55)`
 - OG image (`frontend/public/og-image.jpg`): atualizada com screenshot mais recente do site
+- Bio: "Aventureiro digital nascido em João Pessoa – PB, e residindo atualmente em Garanhuns - PE..."
 - Breakpoints principais: `520px` (mobile Sobre/Experiências), `600px` (mobile Projetos), `480px` (TabNavigation labels)
 
 ### Gerenciamento de Estado
