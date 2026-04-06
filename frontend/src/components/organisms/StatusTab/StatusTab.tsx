@@ -10,18 +10,18 @@ const AVATAR_URL =
   "https://media.licdn.com/dms/image/v2/D4E03AQHT58_HCwY50w/profile-displayphoto-scale_400_400/B4EZzn.QPxHYAg-/0/1773418386666?e=1776902400&v=beta&t=jhHxaosj8e616AhfBqzFo0XWBPhSvQbnNBg_AabahFs";
 
 const LEFT_SKILLS: Skill[] = [
-  { name: "HTML",       value: 100 },
-  { name: "CSS",        value: 100 },
   { name: "Bootstrap",  value: 100 },
   { name: "React",      value: 100 },
   { name: "TypeScript", value: 100 },
+  { name: "JavaScript", value: 100 },
+  { name: "REST",       value: 100 },
 ];
 
 const RIGHT_SKILLS: Skill[] = [
   { name: "Python",  value: 100 },
   { name: "FastAPI", value: 100 },
-  { name: "Pytest",  value: 100 },
-  { name: "Pylance", value: 100 },
+  { name: "Java",    value: 100 },
+  { name: "Spring",  value: 100 },
   { name: "SQL",     value: 100 },
 ];
 
