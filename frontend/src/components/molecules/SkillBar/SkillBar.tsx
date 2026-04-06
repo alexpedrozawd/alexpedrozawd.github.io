@@ -32,7 +32,7 @@ const SKILL_ICONS: Record<string, string> = {
   fastapi:    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
   java:       "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
   spring:     "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg",
-  sql:        "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+  sql:        "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
   rest:       "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/gear-fill.svg",
 };
 
