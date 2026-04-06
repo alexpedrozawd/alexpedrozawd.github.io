@@ -25,7 +25,7 @@ const SKILL_ICONS: Record<string, string> = {
 function SkillRow({ name }: { name: string }) {
   return (
     <div className={styles.grimoireRow}>
-      <span className={styles.grimoireSkillName}>{name}</span>
+      <span className={styles.grimoireSkillName}>– {name}</span>
       {SKILL_ICONS[name] && (
         <img
           src={SKILL_ICONS[name]}

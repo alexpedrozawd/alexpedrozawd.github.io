@@ -280,8 +280,8 @@
 .grimoireRow {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: $space-sm;
+  justify-content: flex-start;
+  gap: 6px;
   padding: 5px 0;
   border-bottom: 1px solid rgba(100, 75, 20, 0.22);
   position: relative;
@@ -302,11 +302,11 @@
 }
 
 .grimoireIcon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
   object-fit: contain;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  filter: brightness(0);
 }
 
 // ─── Mobile ──────────────────────────────────────────────────
