@@ -132,10 +132,6 @@
   text-align: center;
 }
 
-.skillsTitle {
-  margin-bottom: $space-md;
-}
-
 .pergaminhoSection {
   margin-bottom: $space-sm;
 }
@@ -171,115 +167,17 @@
   }
 }
 
-// ─── Grimoire / Open Book ─────────────────────────────────────
-
-.grimoire {
-  display: flex;
-  position: relative;
-  border-radius: 16px 8px 8px 16px;
-  border: 2px solid #1e0e02;
-  overflow: hidden;
-  min-height: 320px;
-  box-shadow:
-    0 18px 55px rgba(0, 0, 0, 0.85),
-    0 6px 18px rgba(0, 0, 0, 0.55),
-    0 2px 4px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(201, 170, 113, 0.1);
-  background: #0f0600;
-
-  @media (max-width: 768px) { min-height: 280px; }
-  @media (max-width: 520px) { min-height: 240px; }
+.skillsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-md;
 }
 
-// Shared page base — used by both left & right
-%page-base {
-  flex: 1;
-  min-width: 0;
+.skillsCol {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  position: relative;
+  gap: 2px;
 }
-
-.grimoirePageLeft {
-  @extend %page-base;
-  padding: $space-lg $space-sm $space-lg $space-xl;
-  background:
-    // Shadow curving into the spine (right edge)
-    linear-gradient(to right, transparent 65%, rgba(0,0,0,0.28) 100%),
-    // Corner aging spots
-    radial-gradient(ellipse at 6%  8%,  rgba(140,100,20,0.22) 0%, transparent 35%),
-    radial-gradient(ellipse at 88% 92%, rgba(110, 80,15,0.18) 0%, transparent 30%),
-    radial-gradient(ellipse at 50% 50%, rgba(180,140,50,0.06) 0%, transparent 60%),
-    // Parchment base — warm, aged
-    linear-gradient(150deg, #f8edca 0%, #edd99a 35%, #e5ce88 65%, #d6bc6e 100%);
-}
-
-.grimoirePageRight {
-  @extend %page-base;
-  padding: $space-lg $space-xl $space-lg $space-sm;
-  background:
-    // Shadow curving into the spine (left edge)
-    linear-gradient(to left, transparent 65%, rgba(0,0,0,0.28) 100%),
-    // Corner aging spots
-    radial-gradient(ellipse at 94% 8%,  rgba(140,100,20,0.22) 0%, transparent 35%),
-    radial-gradient(ellipse at 12% 92%, rgba(110, 80,15,0.18) 0%, transparent 30%),
-    radial-gradient(ellipse at 50% 50%, rgba(180,140,50,0.06) 0%, transparent 60%),
-    // Parchment base
-    linear-gradient(210deg, #f8edca 0%, #edd99a 35%, #e5ce88 65%, #d6bc6e 100%);
-}
-
-// Gutter / binding crease
-.grimoireSpine {
-  width: 10px;
-  flex-shrink: 0;
-  position: relative;
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.55) 0%,
-    #080300 35%,
-    #100600 50%,
-    #080300 65%,
-    rgba(0,0,0,0.55) 100%
-  );
-  box-shadow:
-    inset 3px  0 14px rgba(0,0,0,0.9),
-    inset -3px 0 14px rgba(0,0,0,0.9);
-}
-
-.grimoireRow {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
-  padding: 5px 0;
-  border-bottom: 1px solid rgba(100, 75, 20, 0.25);
-  position: relative;
-  z-index: 1;
-
-  &:last-child { border-bottom: none; }
-}
-
-.grimoireSkillName {
-  font-family: $font-body;
-  font-style: italic;
-  font-size: 1rem;
-  color: #1a0f00;
-  letter-spacing: 0.01em;
-  line-height: 1.3;
-}
-
-.grimoireIcon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  object-fit: contain;
-  // Grayscale so white letters remain white → multiply makes them pick up parchment
-  filter: grayscale(1) contrast(1.4);
-  mix-blend-mode: multiply;
-}
-
-// ─── Mobile ──────────────────────────────────────────────────
 
 @media (max-width: 520px) {
   .heroRow {
@@ -320,24 +218,7 @@
     font-size: 1.1rem;
   }
 
-  .grimoireSpine {
-    width: 7px;
-  }
-
-  .grimoireSkillName {
-    font-size: 0.88rem;
-  }
-
-  .grimoireIcon {
-    width: 17px;
-    height: 17px;
-  }
-
-  .grimoirePageLeft {
-    padding: $space-sm $space-xs $space-sm $space-md;
-  }
-
-  .grimoirePageRight {
-    padding: $space-sm $space-md $space-sm $space-xs;
+  .skillsGrid {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,4 +1,6 @@
 import { OrnamentDivider } from "../../atoms/OrnamentDivider/OrnamentDivider";
+import { SkillBar } from "../../molecules/SkillBar/SkillBar";
+import type { Skill } from "../../../types";
 import styles from "./StatusTab.module.scss";
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/alexandre-pedroza-mb/";
@@ -7,36 +9,21 @@ const CV_URL = "https://drive.google.com/file/d/1erqBgJDkqoHGzEb6wDiFB6n-DEmIHOt
 const AVATAR_URL =
   "https://media.licdn.com/dms/image/v2/D4E03AQHT58_HCwY50w/profile-displayphoto-scale_400_400/B4EZzn.QPxHYAg-/0/1773418386666?e=1776902400&v=beta&t=jhHxaosj8e616AhfBqzFo0XWBPhSvQbnNBg_AabahFs";
 
-const LEFT_SKILLS  = ["Bootstrap", "React", "TypeScript", "JavaScript", "REST"];
-const RIGHT_SKILLS = ["Python", "FastAPI", "Java", "Spring", "SQL"];
+const LEFT_SKILLS: Skill[] = [
+  { name: "Bootstrap",  value: 100 },
+  { name: "React",      value: 100 },
+  { name: "TypeScript", value: 100 },
+  { name: "JavaScript", value: 100 },
+  { name: "REST",       value: 100 },
+];
 
-const SKILL_ICONS: Record<string, string> = {
-  Bootstrap:  "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
-  React:      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-  TypeScript: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
-  JavaScript: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-  Python:     "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
-  FastAPI:    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
-  Java:       "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
-  Spring:     "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg",
-  SQL:        "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
-};
-
-function SkillRow({ name }: { name: string }) {
-  return (
-    <div className={styles.grimoireRow}>
-      <span className={styles.grimoireSkillName}>– {name}</span>
-      {SKILL_ICONS[name] && (
-        <img
-          src={SKILL_ICONS[name]}
-          alt={name}
-          className={styles.grimoireIcon}
-          loading="lazy"
-        />
-      )}
-    </div>
-  );
-}
+const RIGHT_SKILLS: Skill[] = [
+  { name: "Python",  value: 100 },
+  { name: "FastAPI", value: 100 },
+  { name: "Java",    value: 100 },
+  { name: "Spring",  value: 100 },
+  { name: "SQL",     value: 100 },
+];
 
 export function StatusTab() {
   return (
@@ -107,24 +94,18 @@ export function StatusTab() {
 
       <OrnamentDivider symbol="⚙" />
 
-      {/* — Skills Grimoire — */}
+      {/* — Skills — */}
       <div className={styles.section}>
-        <h3 className={`${styles.sectionTitle} ${styles.skillsTitle}`}>Habilidades</h3>
-        <div className={styles.grimoire}>
-          {/* Left page */}
-          <div className={styles.grimoirePageLeft}>
-            {LEFT_SKILLS.map((name) => (
-              <SkillRow key={name} name={name} />
+        <h3 className={styles.sectionTitle}>Habilidades</h3>
+        <div className={styles.skillsGrid}>
+          <div className={styles.skillsCol}>
+            {LEFT_SKILLS.map((skill) => (
+              <SkillBar key={skill.name} skill={skill} />
             ))}
           </div>
-
-          {/* Spine */}
-          <div className={styles.grimoireSpine} aria-hidden="true" />
-
-          {/* Right page */}
-          <div className={styles.grimoirePageRight}>
-            {RIGHT_SKILLS.map((name) => (
-              <SkillRow key={name} name={name} />
+          <div className={styles.skillsCol}>
+            {RIGHT_SKILLS.map((skill) => (
+              <SkillBar key={skill.name} skill={skill} />
             ))}
           </div>
         </div>
