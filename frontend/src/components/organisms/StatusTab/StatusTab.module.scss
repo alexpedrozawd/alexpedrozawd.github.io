@@ -176,15 +176,24 @@
 .grimoire {
   display: flex;
   position: relative;
-  border-radius: 3px 8px 8px 3px;
+  border-radius: 16px 8px 8px 16px;
   border: 2px solid #2e1805;
   overflow: hidden;
+  min-height: 320px;
   box-shadow:
     0 10px 40px rgba(0, 0, 0, 0.75),
     0 3px 10px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(201, 170, 113, 0.12),
     inset 0 -1px 0 rgba(0, 0, 0, 0.2);
   background: #1c0e04;
+
+  @media (max-width: 768px) {
+    min-height: 280px;
+  }
+
+  @media (max-width: 520px) {
+    min-height: 240px;
+  }
 }
 
 .grimoirePageLeft {
