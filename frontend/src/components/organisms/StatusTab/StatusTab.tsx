@@ -92,7 +92,7 @@ export function StatusTab() {
         </div>
       </div>
 
-      <OrnamentDivider symbol="⚙" />
+      <OrnamentDivider symbol="✦" />
 
       {/* — Skills — */}
       <div className={styles.section}>
