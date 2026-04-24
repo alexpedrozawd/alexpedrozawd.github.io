@@ -13,7 +13,7 @@ const PROJECTS: Project[] = [
     tags: ["React", "TypeScript", "FastAPI", "Supabase"],
     icon: "🦕",
     imageUrl: "https://api.scryfall.com/cards/xln/222?format=image&version=art_crop",
-    url: "https://github.com/alexpedrozawd/ixalan-project",
+    url: "https://alexpedrozawd.github.io/ixalan-project/",
   },
   {
     id: 2,

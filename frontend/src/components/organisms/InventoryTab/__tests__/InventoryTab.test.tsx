@@ -38,7 +38,7 @@ describe("InventoryTab", () => {
     render(<InventoryTab />);
     const link = screen.getByRole("link", { name: /ver projeto ixalan news/i });
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", "https://github.com/alexpedrozawd/ixalan-project");
+    expect(link).toHaveAttribute("href", "https://alexpedrozawd.github.io/ixalan-project/");
     expect(link).toHaveAttribute("target", "_blank");
   });
 
