@@ -6,8 +6,7 @@ import styles from "./StatusTab.module.scss";
 const LINKEDIN_URL = "https://www.linkedin.com/in/alexandre-pedroza-mb/";
 const CV_URL = "https://drive.google.com/file/d/1erqBgJDkqoHGzEb6wDiFB6n-DEmIHOtJ/view?usp=sharing";
 
-const AVATAR_URL =
-  "https://media.licdn.com/dms/image/v2/D4E03AQHT58_HCwY50w/profile-displayphoto-scale_400_400/B4EZzn.QPxHYAg-/0/1773418386666?e=1776902400&v=beta&t=jhHxaosj8e616AhfBqzFo0XWBPhSvQbnNBg_AabahFs";
+const AVATAR_URL = "https://github.com/alexpedrozawd.png";
 
 const LEFT_SKILLS: Skill[] = [
   { name: "Bootstrap",  value: 100 },

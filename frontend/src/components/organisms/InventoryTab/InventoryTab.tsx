@@ -131,7 +131,7 @@ function ProjectDetail({ project }: { project: Project }) {
               className={styles.verProjetoBtn}
               aria-label={`Ver projeto ${project.title} no GitHub`}
             >
-              Ver Projeto ⚔
+              Ver Projeto
             </a>
           )}
         </div>
