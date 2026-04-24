@@ -6,6 +6,17 @@ import styles from "./InventoryTab.module.scss";
 const PROJECTS: Project[] = [
   {
     id: 1,
+    title: "Ixalan News",
+    description:
+      "Site de notícias sobre o bloco Ixalan de Magic: The Gathering, recriado do zero com React, TypeScript, FastAPI e Supabase.",
+    status: "active",
+    tags: ["React", "TypeScript", "FastAPI", "Supabase"],
+    icon: "🦕",
+    imageUrl: "https://api.scryfall.com/cards/xln/222?format=image&version=art_crop",
+    url: "https://github.com/alexpedrozawd/ixalan-project",
+  },
+  {
+    id: 2,
     title: "Projeto Alpha",
     description: "Em breve...",
     status: "coming_soon",
@@ -13,7 +24,7 @@ const PROJECTS: Project[] = [
     icon: "⚔️",
   },
   {
-    id: 2,
+    id: 3,
     title: "Projeto Beta",
     description: "Em breve...",
     status: "coming_soon",
@@ -21,7 +32,7 @@ const PROJECTS: Project[] = [
     icon: "🛡️",
   },
   {
-    id: 3,
+    id: 4,
     title: "Projeto Gamma",
     description: "Em breve...",
     status: "coming_soon",
@@ -29,7 +40,7 @@ const PROJECTS: Project[] = [
     icon: "🔮",
   },
   {
-    id: 4,
+    id: 5,
     title: "Projeto Delta",
     description: "Em breve...",
     status: "coming_soon",
@@ -46,7 +57,6 @@ export function InventoryTab() {
     <div className={styles.container}>
       <h3 className={styles.gridTitle}>Inventário</h3>
 
-      {/* Grid + Detail row */}
       <div className={styles.row}>
         <div className={styles.grid}>
           <div className={styles.slots}>
@@ -63,7 +73,6 @@ export function InventoryTab() {
           </div>
         </div>
 
-        {/* Detail panel */}
         <div className={`${styles.detail} ${selectedProject ? styles.visible : ""}`}>
           {selectedProject ? (
             <ProjectDetail project={selectedProject} />
@@ -75,31 +84,73 @@ export function InventoryTab() {
           )}
         </div>
       </div>
-
-
     </div>
   );
 }
 
 function ProjectDetail({ project }: { project: Project }) {
+  const isActive = project.status === "active";
+
   return (
     <div className={styles.detailInner}>
-      <div className={styles.detailIcon} aria-hidden="true">{project.icon}</div>
-      <h3 className={styles.detailTitle}>{project.title}</h3>
-      <span className={styles.statusBadge}>Em Breve</span>
-
-      <div className={styles.loadingSection}>
-        <p className={styles.loadingLabel}>Carregando...</p>
-        <div className={styles.loadingTrack}>
-          <div className={styles.loadingFill} />
+      {project.imageUrl ? (
+        <div className={styles.detailImageWrapper} aria-hidden="true">
+          <img
+            src={project.imageUrl}
+            alt={project.title}
+            className={styles.detailImage}
+            loading="lazy"
+          />
         </div>
-        <p className={styles.comingSoon}>✨ Em Breve ✨</p>
-      </div>
+      ) : (
+        <div className={styles.detailIcon} aria-hidden="true">{project.icon}</div>
+      )}
 
-      <p className={styles.detailDesc}>
-        Este projeto está sendo forjado nas profundezas do código.
-        Retorne em breve para descobri-lo.
-      </p>
+      <h3 className={styles.detailTitle}>{project.title}</h3>
+
+      <span className={isActive ? styles.statusActive : styles.statusBadge}>
+        {isActive ? "✦ Disponível" : "Em Breve"}
+      </span>
+
+      {project.tags.length > 0 && (
+        <div className={styles.tags}>
+          {project.tags.map((tag) => (
+            <span key={tag} className={styles.tag}>{tag}</span>
+          ))}
+        </div>
+      )}
+
+      {isActive ? (
+        <div className={styles.activeSection}>
+          <p className={styles.detailDesc}>{project.description}</p>
+          {project.url && (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.verProjetoBtn}
+              aria-label={`Ver projeto ${project.title} no GitHub`}
+            >
+              Ver Projeto ⚔
+            </a>
+          )}
+        </div>
+      ) : (
+        <div className={styles.loadingSection}>
+          <p className={styles.loadingLabel}>Carregando...</p>
+          <div className={styles.loadingTrack}>
+            <div className={styles.loadingFill} />
+          </div>
+          <p className={styles.comingSoon}>✨ Em Breve ✨</p>
+        </div>
+      )}
+
+      {!isActive && (
+        <p className={styles.detailDesc}>
+          Este projeto está sendo forjado nas profundezas do código.
+          Retorne em breve para descobri-lo.
+        </p>
+      )}
     </div>
   );
 }

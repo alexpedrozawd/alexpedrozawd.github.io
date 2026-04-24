@@ -15,6 +15,8 @@ export interface Project {
   status: "coming_soon" | "active" | "archived";
   tags: string[];
   icon: ReactNode;
+  imageUrl?: string;
+  url?: string;
 }
 
 export interface Quest {

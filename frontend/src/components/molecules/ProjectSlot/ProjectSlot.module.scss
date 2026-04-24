@@ -71,3 +71,74 @@
   border-radius: $radius-sm;
   padding: 2px 7px;
 }
+
+// ── Active slot ────────────────────────────────────────────────
+.activeSlot {
+  border-color: $color-gold !important;
+}
+
+// ── Image thumbnail ────────────────────────────────────────────
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  display: block;
+
+  // Sun-ray shimmer sweep
+  &::after {
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 30%;
+    height: 120%;
+    background: linear-gradient(
+      110deg,
+      transparent,
+      rgba(232, 204, 138, 0.55) 50%,
+      transparent
+    );
+    transform: skewX(-15deg) translateX(-200%);
+    animation: sun-shimmer 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+.imageIcon {
+  width: 100%;
+  height: 72px;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform $transition-slow;
+
+  .slot:hover &,
+  .selected & {
+    transform: scale(1.05);
+  }
+}
+
+// ── Active badge ───────────────────────────────────────────────
+.activeBadge {
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: $radius-sm;
+  padding: 2px 7px;
+  color: $color-gold;
+  border: 1px solid $color-gold;
+  animation: badge-glow-pulse 2.5s ease-in-out infinite;
+}
+
+// ── Keyframes ─────────────────────────────────────────────────
+@keyframes sun-shimmer {
+  0%   { transform: skewX(-15deg) translateX(-200%); }
+  55%  { transform: skewX(-15deg) translateX(500%); }
+  100% { transform: skewX(-15deg) translateX(500%); }
+}
+
+@keyframes badge-glow-pulse {
+  0%, 100% { box-shadow: none; opacity: 0.75; }
+  50%       { box-shadow: 0 0 8px rgba(201, 170, 113, 0.5); opacity: 1; }
+}
