@@ -6,7 +6,7 @@ import styles from "./StatusTab.module.scss";
 const LINKEDIN_URL = "https://www.linkedin.com/in/alexandre-pedroza-mb/";
 const CV_URL = "https://drive.google.com/file/d/1erqBgJDkqoHGzEb6wDiFB6n-DEmIHOtJ/view?usp=sharing";
 
-const AVATAR_URL = "https://github.com/alexpedrozawd.png";
+const AVATAR_URL = "/avatar.png";
 
 const LEFT_SKILLS: Skill[] = [
   { name: "Bootstrap",  value: 100 },
@@ -36,6 +36,7 @@ export function StatusTab() {
                 src={AVATAR_URL}
                 alt="Alexandre Pedroza"
                 className={styles.avatar}
+                fetchPriority="high"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src =
                     "https://placehold.co/100x100/0d0d1a/c9aa71?text=AP";
