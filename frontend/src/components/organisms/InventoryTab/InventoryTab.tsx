@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ProjectSlot } from "../../molecules/ProjectSlot/ProjectSlot";
+import { ProjectViewer } from "../../molecules/ProjectViewer/ProjectViewer";
 import type { Project } from "../../../types";
 import styles from "./InventoryTab.module.scss";
 
@@ -51,44 +52,61 @@ const PROJECTS: Project[] = [
 
 export function InventoryTab() {
   const [selectedId, setSelectedId] = useState<number | null>(PROJECTS[0]?.id ?? null);
+  const [viewingProject, setViewingProject] = useState<Project | null>(null);
   const selectedProject = PROJECTS.find((p) => p.id === selectedId) ?? null;
 
   return (
-    <div className={styles.container}>
-      <h3 className={styles.gridTitle}>Inventário</h3>
+    <>
+      <div className={styles.container}>
+        <h3 className={styles.gridTitle}>Inventário</h3>
 
-      <div className={styles.row}>
-        <div className={styles.grid}>
-          <div className={styles.slots}>
-            {PROJECTS.map((project) => (
-              <ProjectSlot
-                key={project.id}
-                project={project}
-                isSelected={selectedId === project.id}
-                onClick={() =>
-                  setSelectedId((prev) => (prev === project.id ? null : project.id))
-                }
-              />
-            ))}
+        <div className={styles.row}>
+          <div className={styles.grid}>
+            <div className={styles.slots}>
+              {PROJECTS.map((project) => (
+                <ProjectSlot
+                  key={project.id}
+                  project={project}
+                  isSelected={selectedId === project.id}
+                  onClick={() =>
+                    setSelectedId((prev) => (prev === project.id ? null : project.id))
+                  }
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className={`${styles.detail} ${selectedProject ? styles.visible : ""}`}>
+            {selectedProject ? (
+              <ProjectDetail project={selectedProject} onView={setViewingProject} />
+            ) : (
+              <div className={styles.emptyDetail}>
+                <span className={styles.emptyIcon} aria-hidden="true">📦</span>
+                <p>Nenhum item selecionado</p>
+              </div>
+            )}
           </div>
         </div>
-
-        <div className={`${styles.detail} ${selectedProject ? styles.visible : ""}`}>
-          {selectedProject ? (
-            <ProjectDetail project={selectedProject} />
-          ) : (
-            <div className={styles.emptyDetail}>
-              <span className={styles.emptyIcon} aria-hidden="true">📦</span>
-              <p>Nenhum item selecionado</p>
-            </div>
-          )}
-        </div>
       </div>
-    </div>
+
+      {viewingProject?.url && (
+        <ProjectViewer
+          url={viewingProject.url}
+          title={viewingProject.title}
+          onClose={() => setViewingProject(null)}
+        />
+      )}
+    </>
   );
 }
 
-function ProjectDetail({ project }: { project: Project }) {
+function ProjectDetail({
+  project,
+  onView,
+}: {
+  project: Project;
+  onView: (project: Project) => void;
+}) {
   const isActive = project.status === "active";
 
   return (
@@ -124,15 +142,13 @@ function ProjectDetail({ project }: { project: Project }) {
         <div className={styles.activeSection}>
           <p className={styles.detailDesc}>{project.description}</p>
           {project.url && (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
               className={styles.verProjetoBtn}
-              aria-label={`Ver projeto ${project.title} no GitHub`}
+              onClick={() => onView(project)}
+              aria-label={`Ver projeto ${project.title}`}
             >
               Ver Projeto
-            </a>
+            </button>
           )}
         </div>
       ) : (
