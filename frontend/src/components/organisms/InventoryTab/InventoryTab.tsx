@@ -8,7 +8,7 @@ const PROJECTS: Project[] = [
     id: 1,
     title: "Ixalan News",
     description:
-      "Site de notícias sobre o bloco Ixalan de Magic: The Gathering, recriado do zero com React, TypeScript, FastAPI e Supabase.",
+      "Site de notícias sobre o bloco Ixalan de Magic: The Gathering, da Wizards of the Coast. Projeto perdido no tempo e recriado do zero.",
     status: "active",
     tags: ["React", "TypeScript", "FastAPI", "Supabase"],
     icon: "🦕",
