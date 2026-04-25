@@ -1,0 +1,116 @@
+@use "../../../styles/variables" as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(7, 7, 15, 0.88);
+  backdrop-filter: blur(6px);
+  animation: overlayFadeIn 0.3s ease forwards;
+}
+
+.viewer {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  background: #07070f;
+  border: 1px solid $color-gold;
+  border-radius: $radius-md;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 60px rgba(201, 170, 113, 0.18), 0 0 120px rgba(0, 0, 0, 0.8);
+  transform-origin: left center;
+  animation: bookOpen 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.55);
+  border-bottom: 1px solid $color-gold-dark;
+  flex-shrink: 0;
+}
+
+.viewerTitle {
+  font-family: $font-display;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-gold;
+}
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid $color-gold-dark;
+  color: $color-parchment;
+  border-radius: $radius-sm;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 0.72rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color $transition-fast, color $transition-fast;
+
+  &:hover {
+    border-color: $color-gold;
+    color: $color-gold;
+  }
+}
+
+.frame {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
+.newTabBtn {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(7, 7, 15, 0.75);
+  border: 1px solid $color-gold-dark;
+  color: $color-gold;
+  border-radius: $radius-sm;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  text-decoration: none;
+  opacity: 0.55;
+  transition: opacity $transition-normal, border-color $transition-normal, box-shadow $transition-normal;
+
+  &:hover {
+    opacity: 1;
+    border-color: $color-gold;
+    box-shadow: 0 0 10px rgba(201, 170, 113, 0.3);
+  }
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes bookOpen {
+  0% {
+    transform: perspective(1400px) rotateY(-90deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(1400px) rotateY(0deg);
+    opacity: 1;
+  }
+}
