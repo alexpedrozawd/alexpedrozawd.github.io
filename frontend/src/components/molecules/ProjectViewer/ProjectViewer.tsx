@@ -67,10 +67,10 @@ export function ProjectViewer({ url, title, onClose }: ProjectViewerProps) {
           aria-label={`Abrir ${title} em nova aba`}
           title="Abrir em nova aba"
         >
-          ↗
+          <span className={styles.newTabLabel
         </a>
       </div>
     </div>,
     document.body
   );
-}
+}>ABRIR<\/span><span>↗<\/span>}
