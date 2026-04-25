@@ -1,5 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ProjectViewer.module.scss";
+
+const ANIM_DURATION = 1200;
 
 interface ProjectViewerProps {
   url: string;
@@ -8,24 +10,45 @@ interface ProjectViewerProps {
 }
 
 export function ProjectViewer({ url, title, onClose }: ProjectViewerProps) {
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleClose = () => {
+    if (isClosing) return;
+    setIsClosing(true);
+    setTimeout(onClose, ANIM_DURATION);
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        setIsClosing(true);
+        setTimeout(onClose, ANIM_DURATION);
+      }
     };
-    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKey);
-    };
+    return () => window.removeEventListener("keydown", handleKey);
   }, [onClose]);
 
   return (
-    <div className={styles.overlay} onClick={onClose} role="dialog" aria-modal="true" aria-label={`Visualizando ${title}`}>
-      <div className={styles.viewer} onClick={(e) => e.stopPropagation()}>
+    <div
+      className={`${styles.overlay} ${isClosing ? styles.overlayClosing : ""}`}
+      onClick={handleClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Visualizando ${title}`}
+    >
+      <div
+        className={`${styles.viewer} ${isClosing ? styles.viewerClosing : ""}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className={styles.topBar}>
           <span className={styles.viewerTitle}>{title}</span>
-          <button className={styles.closeBtn} onClick={onClose} aria-label="Fechar visualização">
+          <button className={styles.closeBtn} onClick={handleClose} aria-label="Fechar visualização">
             ✕
           </button>
         </div>
