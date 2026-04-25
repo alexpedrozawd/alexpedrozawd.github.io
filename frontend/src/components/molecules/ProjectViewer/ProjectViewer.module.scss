@@ -16,30 +16,46 @@
   animation: overlayFadeOut 1.2s ease forwards;
 }
 
+// ── Viewer panel ───────────────────────────────────────────────
 .viewer {
   position: relative;
-  width: 95vw;
-  height: 95vh;
+  // Mobile-first: full screen
+  width: 100vw;
+  height: 100dvh;
   background: #07070f;
   border: 1px solid $color-gold;
-  border-radius: $radius-md;
+  border-radius: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 60px rgba(201, 170, 113, 0.18), 0 0 120px rgba(0, 0, 0, 0.8);
   transform-origin: left center;
   animation: bookOpen 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+
+  // Tablet
+  @media (min-width: 640px) {
+    width: 95vw;
+    height: 90dvh;
+    border-radius: $radius-md;
+  }
+
+  // Desktop
+  @media (min-width: 1200px) {
+    height: 95dvh;
+  }
 }
 
 .viewerClosing {
   animation: bookClose 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
+// ── Top bar ────────────────────────────────────────────────────
 .topBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  // Base padding + safe area for notch/status bar
+  padding: calc(0.5rem + env(safe-area-inset-top, 0px)) 1rem 0.5rem;
   background: rgba(0, 0, 0, 0.55);
   border-bottom: 1px solid $color-gold-dark;
   flex-shrink: 0;
@@ -58,14 +74,16 @@
   border: 1px solid $color-gold-dark;
   color: $color-parchment;
   border-radius: $radius-sm;
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: border-color $transition-fast, color $transition-fast;
+  // Larger tap area on mobile
+  touch-action: manipulation;
 
   &:hover {
     border-color: $color-gold;
@@ -73,28 +91,32 @@
   }
 }
 
+// ── iframe ─────────────────────────────────────────────────────
 .frame {
   flex: 1;
   width: 100%;
   border: none;
 }
 
+// ── New-tab button ─────────────────────────────────────────────
 .newTabBtn {
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  // Respect home bar on iOS
+  bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+  right: max(1rem, env(safe-area-inset-right, 1rem));
   background: rgba(7, 7, 15, 0.75);
   border: 1px solid $color-gold-dark;
   color: $color-gold;
   border-radius: $radius-sm;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.95rem;
   text-decoration: none;
   opacity: 0.55;
+  touch-action: manipulation;
   transition: opacity $transition-normal, border-color $transition-normal, box-shadow $transition-normal;
 
   &:hover {
@@ -104,6 +126,7 @@
   }
 }
 
+// ── Keyframes ──────────────────────────────────────────────────
 @keyframes overlayFadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -119,9 +142,7 @@
     transform: perspective(1400px) rotateY(-90deg);
     opacity: 0;
   }
-  50% {
-    opacity: 1;
-  }
+  50% { opacity: 1; }
   100% {
     transform: perspective(1400px) rotateY(0deg);
     opacity: 1;
@@ -133,9 +154,7 @@
     transform: perspective(1400px) rotateY(0deg);
     opacity: 1;
   }
-  50% {
-    opacity: 1;
-  }
+  50% { opacity: 1; }
   100% {
     transform: perspective(1400px) rotateY(90deg);
     opacity: 0;
