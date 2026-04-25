@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "./ProjectViewer.module.scss";
 
 const ANIM_DURATION = 1200;
@@ -34,7 +35,7 @@ export function ProjectViewer({ url, title, onClose }: ProjectViewerProps) {
     return () => window.removeEventListener("keydown", handleKey);
   }, [onClose]);
 
-  return (
+  return createPortal(
     <div
       className={`${styles.overlay} ${isClosing ? styles.overlayClosing : ""}`}
       onClick={handleClose}
@@ -69,6 +70,7 @@ export function ProjectViewer({ url, title, onClose }: ProjectViewerProps) {
           ↗
         </a>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
