@@ -19,6 +19,10 @@ export function ProjectViewer({ url, title, onClose }: ProjectViewerProps) {
     setTimeout(onClose, ANIM_DURATION);
   };
 
+  const handleOpenNewTab = () => {
+    handleClose();
+  };
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = ""; };
@@ -66,6 +70,7 @@ export function ProjectViewer({ url, title, onClose }: ProjectViewerProps) {
           className={styles.newTabBtn}
           aria-label={`Abrir ${title} em nova aba`}
           title="Abrir em nova aba"
+          onClick={handleOpenNewTab}
         >
           <span className={styles.newTabLabel}>ABRIR</span>
           <span>↗</span>
