@@ -13,7 +13,6 @@ const LEFT_SKILLS: Skill[] = [
   { name: "React",      value: 100 },
   { name: "TypeScript", value: 100 },
   { name: "JavaScript", value: 100 },
-  { name: "REST",       value: 100 },
 ];
 
 const RIGHT_SKILLS: Skill[] = [
@@ -21,7 +20,6 @@ const RIGHT_SKILLS: Skill[] = [
   { name: "FastAPI", value: 100 },
   { name: "Java",    value: 100 },
   { name: "Spring",  value: 100 },
-  { name: "SQL",     value: 100 },
 ];
 
 export function StatusTab() {
@@ -97,6 +95,10 @@ export function StatusTab() {
       {/* — Skills — */}
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>Habilidades</h3>
+        <div className={styles.skillsColHeaders}>
+          <span>Frontend</span>
+          <span>Backend</span>
+        </div>
         <div className={styles.skillsGrid}>
           <div className={styles.skillsCol}>
             {LEFT_SKILLS.map((skill) => (
