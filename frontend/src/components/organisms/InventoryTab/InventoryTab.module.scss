@@ -276,6 +276,8 @@
 
 .verProjetoBtn {
   display: inline-block;
+  background: transparent;
+  cursor: pointer;
   font-family: $font-display;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
