@@ -94,7 +94,6 @@ export function StatusTab() {
 
       {/* — Skills — */}
       <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Habilidades</h3>
         <div className={styles.skillsColHeaders}>
           <span>Frontend</span>
           <span>Backend</span>
