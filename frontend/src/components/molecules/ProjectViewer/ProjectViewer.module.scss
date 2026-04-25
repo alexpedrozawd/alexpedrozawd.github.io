@@ -108,12 +108,11 @@
   border: 1px solid $color-gold-dark;
   color: $color-gold;
   border-radius: $radius-sm;
-  width: 38px;
   height: 38px;
+  padding: 0 0.75rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 0.95rem;
+  gap: 0.35rem;
   text-decoration: none;
   opacity: 0.55;
   touch-action: manipulation;
@@ -124,6 +123,13 @@
     border-color: $color-gold;
     box-shadow: 0 0 10px rgba(201, 170, 113, 0.3);
   }
+}
+
+.newTabLabel {
+  font-family: $font-display;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 // ── Keyframes ──────────────────────────────────────────────────
