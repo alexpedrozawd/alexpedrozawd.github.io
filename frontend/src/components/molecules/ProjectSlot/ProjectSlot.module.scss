@@ -84,25 +84,6 @@
   border-radius: $radius-sm;
   overflow: hidden;
   display: block;
-
-  // Sun-ray shimmer sweep
-  &::after {
-    content: "";
-    position: absolute;
-    top: -10%;
-    left: 0;
-    width: 30%;
-    height: 120%;
-    background: linear-gradient(
-      110deg,
-      transparent,
-      rgba(232, 204, 138, 0.55) 50%,
-      transparent
-    );
-    transform: skewX(-15deg) translateX(-200%);
-    animation: sun-shimmer 4s ease-in-out infinite;
-    pointer-events: none;
-  }
 }
 
 .imageIcon {
@@ -113,7 +94,6 @@
   display: block;
   transition: transform $transition-slow;
 
-  .slot:hover &,
   .selected & {
     transform: scale(1.05);
   }
@@ -132,12 +112,6 @@
 }
 
 // ── Keyframes ─────────────────────────────────────────────────
-@keyframes sun-shimmer {
-  0%   { transform: skewX(-15deg) translateX(-200%); }
-  55%  { transform: skewX(-15deg) translateX(500%); }
-  100% { transform: skewX(-15deg) translateX(500%); }
-}
-
 @keyframes badge-glow-pulse {
   0%, 100% { box-shadow: none; opacity: 0.75; }
   50%       { box-shadow: 0 0 8px rgba(201, 170, 113, 0.5); opacity: 1; }
