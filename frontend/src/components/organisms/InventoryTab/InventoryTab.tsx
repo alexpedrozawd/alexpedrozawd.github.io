@@ -18,11 +18,13 @@ const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    title: "Projeto Alpha",
-    description: "Em breve...",
-    status: "coming_soon",
-    tags: [],
-    icon: "🛡️",
+    title: "Pet Shop API",
+    description:
+      "API REST para gerenciamento de pet shop com cadastro de tutores e pets. Desenvolvida com Spring Boot, JPA e PostgreSQL, seguindo padrão MVC com DTOs e Mapper.",
+    status: "active",
+    tags: ["Java", "Spring Boot", "PostgreSQL", "JPA"],
+    icon: "🐾",
+    url: "https://github.com/alexpedrozawd/projeto-petshop",
   },
   {
     id: 3,
