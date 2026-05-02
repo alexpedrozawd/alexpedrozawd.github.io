@@ -28,6 +28,14 @@ const PROJECTS: Project[] = [
   },
   {
     id: 3,
+    title: "Projeto Alpha",
+    description: "Em breve...",
+    status: "coming_soon",
+    tags: [],
+    icon: "🛡️",
+  },
+  {
+    id: 4,
     title: "Projeto Beta",
     description: "Em breve...",
     status: "coming_soon",
@@ -35,7 +43,7 @@ const PROJECTS: Project[] = [
     icon: "🔮",
   },
   {
-    id: 4,
+    id: 5,
     title: "Projeto Gamma",
     description: "Em breve...",
     status: "coming_soon",
