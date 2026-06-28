@@ -23,7 +23,7 @@ const PROJECTS: Project[] = [
     status: "active",
     tags: ["React", "TypeScript", "Tailwind", "StPageFlip"],
     icon: "📜",
-    imageUrl: "https://alexpedrozawd.github.io/ank-project/pages/page-01.webp",
+    imageUrl: "/ank-cover.webp",
     url: "https://alexpedrozawd.github.io/ank-project/",
   },
   {
