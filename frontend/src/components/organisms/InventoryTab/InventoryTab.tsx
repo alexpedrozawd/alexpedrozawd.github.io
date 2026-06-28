@@ -18,11 +18,13 @@ const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    title: "Projeto Alpha",
-    description: "Em breve...",
-    status: "coming_soon",
-    tags: [],
-    icon: "🛡️",
+    title: "O livro de Ankh",
+    description: "Livro digital folheável com a lore do jogo Tibia, dos Conspiradores. Visual em estilo manuscrito egípcio antigo, com animação 3D de folheamento. Projeto narrativo de Thiago Pedroza.",
+    status: "active",
+    tags: ["React", "TypeScript", "Tailwind", "StPageFlip"],
+    icon: "📜",
+    imageUrl: "https://alexpedrozawd.github.io/ank-project/pages/page-01.webp",
+    url: "https://alexpedrozawd.github.io/ank-project/",
   },
   {
     id: 3,
